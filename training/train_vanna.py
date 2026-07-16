@@ -381,7 +381,7 @@ def load_examples(path):
     return examples
 
 
-for path in ('./stats.sql', './discovery.sql'):
+for path in ('./training/stats.sql', './training/discovery.sql'):
     examples = load_examples(path)
     print(f"{path}: loaded {len(examples)} question/SQL pairs")
     for question, sql in examples:
