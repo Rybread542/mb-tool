@@ -64,12 +64,12 @@ You can narrow your searches in a number of specific ways using the guidelines b
 - **Artist nationality:** Country of origin of the **artist**, rather than where the music was recorded:
 
     *`Show me some Korean hip hop artists.`*
-    
+    <br/>
 
 - **Song/album duration:** Simple, but can make for some fun discovery:
 
     *`List some prog rock tracks longer than 15 minutes.`*
-
+    <br/>
 
 - **Exact names and titles:** Key words and/or names can be matched:
 
