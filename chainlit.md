@@ -21,7 +21,7 @@ You can narrow your searches in a number of specific ways using the guidelines b
     
     *`show me the top N tags in the database.`*
     <br/>
-
+    <br/>
 
 - **Release year:** Album or track release year up to the beginning of 2025:
 
@@ -32,6 +32,7 @@ You can narrow your searches in a number of specific ways using the guidelines b
     *`find some disco artists from the 90s.`*
 
     **Note**: *technically, this takes album remasters, etc. into account and can be inaccurate for literal active artist years.*
+    <br/>
     <br/>
 
 - **Release type:** When searching for albums, the default "release type" is Album, meaning a standard studio album. There exist however, several different types that can be searched:
@@ -44,6 +45,7 @@ You can narrow your searches in a number of specific ways using the guidelines b
     - `Demo`
 
     *`Recommend some deep house remixes from the 2000s.`*
+    <br/>
     <br/>
 
 - **Similar Artist:** Searches can be made for tracks, albums ot artist that are roughly "similar" to a given artist. 
@@ -59,6 +61,7 @@ You can narrow your searches in a number of specific ways using the guidelines b
     These are artists one might expect a Radiohead fan to listen to, but musically they are all over the place. Therefore, if you're looking for **musically similar** tracks, albums, or artists, I'd highly recommend you include a revelant tag to narrow it a bit further:
 
     *`Show me some alternative rock artists that are similar to Radiohead.`*
+    <br/>
     <br/>
 
 - **Artist nationality:** Country of origin of the **artist**, rather than where the music was recorded:
