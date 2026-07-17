@@ -44,47 +44,51 @@ You can narrow your searches in a number of specific ways using the guidelines b
     - `DJ mix`
     - `Demo`
 
-    *`Recommend some deep house remixes from the 2000s.`*
+    *`recommend some deep house remixes from the 2000s`*
+
+    *`show me some live metal performances from the 90s`*
     <br/>
     <br/>
 
-- **Similar Artist:** Searches can be made for tracks, albums ot artist that are roughly "similar" to a given artist. 
+- **Similar Artist:** Searches can be performed for tracks, albums and artists that are roughly "similar" to a given artist. 
 
     **Note**: The similarity calculation is based on an offshoot of MusicBrainz called ListenBrainz. Long story short, similarity is *artists which fans of the **given** artist **also** listen to.*
 
     For example:
 
-    *`Show me some artists that are similar to Radiohead.`*
+    *`show me some artists that are similar to Radiohead`*
     
     This query returned: `The Cure, Pink Floyd, Aphex Twin, The Beatles` and others.
     
     These are artists one might expect a Radiohead fan to listen to, but musically they are all over the place. Therefore, if you're looking for **musically similar** tracks, albums, or artists, I'd highly recommend you include a revelant tag to narrow it a bit further:
 
-    *`Show me some alternative rock artists that are similar to Radiohead.`*
+    *`show me some alternative rock artists that are similar to Radiohead`*
     <br/>
     <br/>
 
 - **Artist nationality:** Country of origin of the **artist**, rather than where the music was recorded:
 
-    *`Show me some Korean hip hop artists.`*
+    *`show me some Korean hip hop artists`*
     <br/>
 
 - **Song/album duration:** Simple, but can make for some fun discovery:
 
-    *`List some prog rock tracks longer than 15 minutes.`*
+    *`list some prog rock tracks longer than 15 minutes`*
+
+    *`show me some artists with an average track length of at least 7 minutes`*
     <br/>
 
 - **Exact names and titles:** Key words and/or names can be matched:
 
-    *`List 5 songs by jazz artists named Rod.`*
+    *`list 5 songs by jazz artists named Rodney`*
     
-    *`Find some psychedelic rock songs with 'turtle' in the title.`*
+    *`find some psychedelic rock songs with 'turtle' in the title`*
     <br/>
 
 
 You can use any number of the above in any combination to search for music. However, **note that extremely specific searches are likely to return few or no results:**
 
-*`Recommend some live, japanese cool jazz albums from 1993.`* 
+*`recommend some live, japanese cool jazz albums from 1993`* 
 
 The key is to hit a sweet spot of how narrow to make the search depending on what you're looking for.
 
@@ -105,7 +109,7 @@ Unfortunately, this is not possible in the current version of the app. As mentio
 
 **As such, a query like the following:**
 
-*`Find me some quiet, dreamy piano albums.`*
+*`find me some quiet, dreamy piano albums`*
 
 **is not currently supported, and will either return no results or error.**
 
