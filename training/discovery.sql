@@ -197,6 +197,31 @@ ORDER BY RANDOM()
 
 LIMIT 10;
 
+--Recommend some mexican folk singers.
+SELECT
+
+artist.name AS artist_name,
+artist.gid,
+artist.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%folk%')
+AND artist.nationality = 'Mexico'
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+
+LIMIT 10;
+
 
 --List 10 artists with an average track length of at least 7 minutes.
 WITH artist_avg AS (
@@ -598,6 +623,34 @@ ORDER BY RANDOM() * (album.variation_count + 1)
 LIMIT 10;
 
 
+--Recommend some live, japanese cool jazz albums from 1993.
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type @> array['Album', 'Live']
+AND artist.nationality = 'Japan'
+AND album.cleaned_tags && array['cool jazz']
+AND album.release_year = 1993
+ORDER BY RANDOM() * (album.variation_count + 1)
+LIMIT 10;
+
+
 --Find some live Canadian folk performances from the 80s.
 SELECT
 
@@ -618,7 +671,7 @@ ON ac.artist_id = artist.id
 
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
-AND album.release_type && array['Live']
+AND album.release_type @> array['Album', 'Live']
 AND artist.nationality = 'Canada'
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%folk%')
 AND album.release_year BETWEEN 1980 AND 1989
@@ -837,6 +890,60 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND album.cleaned_tags && array['funk']
 AND album.release_year BETWEEN 1970 AND 1979
+ORDER BY RANDOM() * (album.variation_count + 1)
+LIMIT 10;
+
+--Recommend some british jazz albums from the 80s.
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['jazz']
+AND artist.nationality = 'United Kingdom'
+AND album.release_year BETWEEN 1980 AND 1989
+ORDER BY RANDOM() * (album.variation_count + 1)
+LIMIT 10;
+
+
+--Recommend some english rap albums.
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['rap']
+AND artist.nationality = 'United Kingdom'
 ORDER BY RANDOM() * (album.variation_count + 1)
 LIMIT 10;
 
@@ -1063,6 +1170,41 @@ ORDER BY RANDOM() * (album.variation_count + 1)
 LIMIT 10;
 
 
+--Find me some korean rap songs from the 2000s.
+SELECT
+
+album.gid,
+track.title AS track_title,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM track
+
+JOIN album_variations av
+ON track.album_id = av.id AND av.is_canonical
+
+JOIN album
+ON av.album_group = album.id
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type && array['Album']
+AND album.cleaned_tags && array['rap']
+AND artist.nationality = 'South Korea'
+AND album.release_year BETWEEN 2000 AND 2009
+ORDER BY RANDOM() * (album.variation_count + 1)
+LIMIT 10;
+
+
 --Find me some long prog rock songs from the 90s.
 SELECT
 
@@ -1093,6 +1235,40 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND album.cleaned_tags && array['progressive rock']
 AND album.release_year BETWEEN 1990 AND 1999
+AND track.duration > 480000
+ORDER BY RANDOM() * (album.variation_count + 1)
+LIMIT 10;
+
+--Find me some live, german prog rock songs.
+SELECT
+
+album.gid,
+track.title AS track_title,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM track
+
+JOIN album_variations av
+ON track.album_id = av.id AND av.is_canonical
+
+JOIN album
+ON av.album_group = album.id
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type @> array['Album', 'Live']
+AND album.cleaned_tags && array['progressive rock']
+AND artist.nationality = 'Germany'
 AND track.duration > 480000
 ORDER BY RANDOM() * (album.variation_count + 1)
 LIMIT 10;

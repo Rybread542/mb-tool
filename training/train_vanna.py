@@ -256,6 +256,10 @@ docs = [
     - "Artists from Paris" - WHERE artist.nationality = 'Paris'
     Because of this limitation, do not attempt to roll cities into their respective countries. The user asking for "American artists" should recive results tagged 'United States'
     rather than trying to include all cities.
+    Other nationality shortcuts:
+    "british" "english" "uk" artists -> United Kingdom
+    "korean" artists -> South Korea
+    "american" artists -> "United States"
     """,
 
 
@@ -290,7 +294,7 @@ docs = [
       Substring matching on a SPECIFIC genre will produce unrelated tags.
 
     Common BROAD genres include:
-    'rock', 'pop', 'metal', 'jazz', 'blues', 'folk', 'house', 'techno', 'trance', 'ambient', 'soul', 'rap', 'disco', 'indie'
+    'rock', 'pop', 'metal', 'jazz', 'blues', 'folk', 'house', 'techno', 'trance', 'ambient', 'soul', 'disco', 'indie'
 
     Common SPECIFIC genres include:
     ALL subgenres: 'post rock', 'doom metal', 'progressive house', 'cool jazz', 'folk rock' etc
@@ -304,6 +308,7 @@ docs = [
     - 'hardcore' spans punk and electronic families. Always exact.
     - 'experimental' is a descriptor across genres, not a coherent
     family. Always exact.
+    - 'rap' matches to trap. always exact even though there are subgenres.
     """,
 
     # --- Rap/hiphop/post rock ---
