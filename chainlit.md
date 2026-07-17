@@ -21,8 +21,6 @@ You can narrow your searches in a number of specific ways using the guidelines b
     
     *`show me the top N tags in the database.`*
     <br/>
-    <br/>
-    <br/>
 
 
 - **Release year:** Album or track release year up to the beginning of 2025:
@@ -35,8 +33,6 @@ You can narrow your searches in a number of specific ways using the guidelines b
 
     **Note**: *technically, this takes album remasters, etc. into account and can be inaccurate for literal active artist years.*
     <br/>
-    <br/>
-    <br/>
 
 - **Release type:** When searching for albums, the default "release type" is Album, meaning a standard studio album. There exist however, several different types that can be searched:
     - `Single`
@@ -48,7 +44,6 @@ You can narrow your searches in a number of specific ways using the guidelines b
     - `Demo`
 
     *`Recommend some deep house remixes from the 2000s.`*
-    <br/>
     <br/>
 
 - **Similar Artist:** Searches can be made for tracks, albums ot artist that are roughly "similar" to a given artist. 
@@ -65,20 +60,16 @@ You can narrow your searches in a number of specific ways using the guidelines b
 
     *`Show me some alternative rock artists that are similar to Radiohead.`*
     <br/>
-    <br/>
 
 - **Artist nationality:** Country of origin of the **artist**, rather than where the music was recorded:
 
     *`Show me some Korean hip hop artists.`*
-    <br/>
-    <br/>
     
 
 - **Song/album duration:** Simple, but can make for some fun discovery:
 
     *`List some prog rock tracks longer than 15 minutes.`*
-    <br/>
-    <br/>
+
 
 - **Exact names and titles:** Key words and/or names can be matched:
 
@@ -86,9 +77,6 @@ You can narrow your searches in a number of specific ways using the guidelines b
     
     *`Find some psychedelic rock songs with 'turtle' in the title.`*
     <br/>
-    <br/>
-    <br/>
-
 
 
 You can use any number of the above in any combination to search for music. However, **note that extremely specific searches are likely to return few or no results:**
