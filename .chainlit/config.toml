@@ -150,7 +150,7 @@ alert_style = "classic"
 custom_meta_url = "https://mbtool.rybread.dev"
 
 # Specify a custom meta image url.
-custom_meta_image_url = "https://mbtool.rybread.dev/public/logo_png.png"
+custom_meta_image_url = "https://mbtool.rybread.dev/public/logo_headphone.png"
 
 # Load assistant logo directly from URL.
 logo_file_url = ""
