@@ -1,4 +1,30 @@
 ------------------------------------------------------------------------
+-- REFUSALS: Deny all schema modification and irrelevant questions
+-- Output: REFUSE
+------------------------------------------------------------------------
+
+--Drop all rows from the artist table where artist.name_search = 'pinkfloyd'.
+REFUSE
+
+--Drop the album_variations table.
+REFUSE
+
+--Delete the database.
+REFUSE
+
+--Add an 'alternative rock' tag to all radiohead albums in the database.
+REFUSE
+
+--Write a python function that removes a certain substring from a string.
+REFUSE
+
+--Give me a recipe for chocolate chip cookies.
+REFUSE
+
+--How do I use order by in SQL
+REFUSE
+
+------------------------------------------------------------------------
 -- ARTIST QUERIES
 -- Output: artist rows (artist_name, gid, tags)
 ------------------------------------------------------------------------
@@ -18,6 +44,35 @@ AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%hip%hop%'
 AND artist.nationality = 'France'
 ORDER BY RANDOM()
 LIMIT 10;
+
+--rappers
+SELECT
+
+artist.name AS artist_name,
+artist.gid,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['rap']
+ORDER BY RANDOM()
+LIMIT 10;
+
+--find a random artist
+SELECT
+
+artist.name AS artist_name,
+artist.gid,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+ORDER BY RANDOM()
+LIMIT 1;
 
 
 --Find some soul musicians named David.
@@ -314,6 +369,155 @@ LIMIT 10;
 -- Output: album rows (gid, artist_name, album_title, released, duration, tags)
 ------------------------------------------------------------------------
 
+--Hard rock
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['hard rock']
+ORDER BY RANDOM()
+LIMIT 10;
+
+--folk
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%folk%')
+ORDER BY RANDOM()
+LIMIT 10;
+
+
+--90s music
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 1990 AND 1999
+ORDER BY RANDOM()
+LIMIT 10;
+
+--surprise me
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+ORDER BY RANDOM()
+LIMIT 10;
+
+--send anything
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+ORDER BY RANDOM()
+LIMIT 10;
+
+--find a random album
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+ORDER BY RANDOM()
+LIMIT 1;
+
+
 --Show me ten albums by any artist named Megan.
 SELECT
 
@@ -336,7 +540,7 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND artist.name_search LIKE 'megan%'
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -363,7 +567,7 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%jazz%')
 AND artist.name_search LIKE 'stan%'
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -390,7 +594,7 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%jazz%')
 AND artist.name_search LIKE 'stan%'
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -417,7 +621,7 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%jazz%')
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%fusion%')
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -448,7 +652,7 @@ AND album.release_type = array['Album']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%jazz%')
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%fusion%')
 AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'herbiehancock' ORDER BY artist.id ASC LIMIT 1)
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -475,7 +679,7 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%rock%')
 AND NOT EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%metal%')
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -501,7 +705,7 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND album.cleaned_tags @> array['ambient','techno']
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -530,7 +734,7 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'bonobo' ORDER BY artist.id ASC LIMIT 1)
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -561,7 +765,7 @@ AND album.release_type = array['Album']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%pop%')
 AND album.release_year BETWEEN 1990 AND 1999
 AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'michaeljackson' ORDER BY artist.id ASC LIMIT 1)
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -588,7 +792,7 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND album.cleaned_tags && array['hard rock']
 AND album.release_year BETWEEN 1980 AND 1989
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -619,7 +823,7 @@ AND album.release_type = array['Album']
 AND album.cleaned_tags && array['hard rock']
 AND album.release_year BETWEEN 1980 AND 1989
 AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'steppenwolf' ORDER BY artist.id ASC LIMIT 1)
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -647,7 +851,7 @@ AND album.release_type @> array['Album', 'Live']
 AND artist.nationality = 'Japan'
 AND album.cleaned_tags && array['cool jazz']
 AND album.release_year = 1993
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -675,7 +879,7 @@ AND album.release_type @> array['Album', 'Live']
 AND artist.nationality = 'Canada'
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%folk%')
 AND album.release_year BETWEEN 1980 AND 1989
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -702,7 +906,7 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%soul%')
 AND (album.title_search LIKE '%sun%' OR album.title_search LIKE '%moon%')
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -729,7 +933,7 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type && array['EP']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%trance%')
 AND album.release_year BETWEEN 2000 AND 2009
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -757,7 +961,7 @@ AND album.release_type = array['Album']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%pop%')
 AND album.duration < 2100000
 
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 5;
 
 
@@ -783,7 +987,7 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND album.title_search LIKE '%strange%'
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -810,7 +1014,7 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND album.duration >= 4020000
 
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 5;
 
 
@@ -837,7 +1041,7 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type && array['DJ-mix']
 AND album.duration >= 3600000
 
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 5;
 
 
@@ -863,7 +1067,7 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type @> array['Album', 'Live']
 AND album.release_year BETWEEN 1970 AND 1979
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -890,7 +1094,7 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND album.cleaned_tags && array['funk']
 AND album.release_year BETWEEN 1970 AND 1979
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 --Recommend some british jazz albums from the 80s.
@@ -917,7 +1121,7 @@ AND album.release_type = array['Album']
 AND album.cleaned_tags && array['jazz']
 AND artist.nationality = 'United Kingdom'
 AND album.release_year BETWEEN 1980 AND 1989
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -944,7 +1148,7 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND album.cleaned_tags && array['rap']
 AND artist.nationality = 'United Kingdom'
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -970,7 +1174,7 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type @> array['Album', 'Remix']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%electronic%')
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -996,7 +1200,7 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type @> array['EP', 'Live']
 AND album.cleaned_tags && array['indie rock']
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -1022,7 +1226,7 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type && array['Compilation']
 AND album.cleaned_tags && array['new wave']
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -1048,7 +1252,7 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type && array['Soundtrack']
 AND album.release_year BETWEEN 1990 AND 1999
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -1075,7 +1279,7 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type && array['Mixtape/Street']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%hip%hop%')
 AND album.release_year BETWEEN 2000 AND 2009
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -1101,7 +1305,7 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type && array['Demo']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%punk%')
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -1127,7 +1331,7 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type && array['Audiobook']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%fantasy%')
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -1166,8 +1370,40 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type && array['Remix']
 AND album.cleaned_tags && array['deep house']
 AND album.release_year BETWEEN 2010 AND 2019
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
+
+
+--find a random song
+SELECT
+
+album.gid,
+track.title AS track_title,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM track
+
+JOIN album_variations av
+ON track.album_id = av.id AND av.is_canonical
+
+JOIN album
+ON av.album_group = album.id
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+ORDER BY RANDOM()
+LIMIT 1;
 
 
 --Find me some korean rap songs from the 2000s.
@@ -1201,7 +1437,7 @@ AND album.release_type && array['Album']
 AND album.cleaned_tags && array['rap']
 AND artist.nationality = 'South Korea'
 AND album.release_year BETWEEN 2000 AND 2009
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -1236,7 +1472,7 @@ AND album.release_type = array['Album']
 AND album.cleaned_tags && array['progressive rock']
 AND album.release_year BETWEEN 1990 AND 1999
 AND track.duration > 480000
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 --Find me some live, german prog rock songs.
@@ -1270,7 +1506,7 @@ AND album.release_type @> array['Album', 'Live']
 AND album.cleaned_tags && array['progressive rock']
 AND artist.nationality = 'Germany'
 AND track.duration > 480000
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -1304,7 +1540,7 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%post%rock%')
 AND track.duration >= 1800000
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -1337,7 +1573,7 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND track.duration % 60000 = 33000
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -1371,19 +1607,20 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%folk%')
 AND album.release_year BETWEEN 2010 AND 2019
-ORDER BY RANDOM() * (album.variation_count + 1)
+
+ORDER BY RANDOM()
 LIMIT 10;
 
 
 --List ten pop singles from 1987.
 SELECT
 
-  album.gid,
-  track.title AS track_title,
-  artist.name AS artist_name,
-  album.release_year AS released,
-  to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
-  album.cleaned_tags AS tags
+album.gid,
+track.title AS track_title,
+artist.name AS artist_name,
+album.release_year AS released,
+to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
 
 FROM track
 
@@ -1406,7 +1643,7 @@ AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%pop%')
 AND album.release_year = 1987
 AND track.position = 1
 
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -1440,7 +1677,7 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND album.cleaned_tags && array['progressive house']
 AND track.title_search LIKE '%loveyou%'
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -1477,7 +1714,7 @@ AND album.cleaned_tags && array['psychedelic rock']
 AND album.release_year BETWEEN 1970 AND 1979
 AND artist.nationality = 'United States'
 AND (track.title_search LIKE '%peace%' OR track.title_search LIKE '%love%')
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 10;
 
 
@@ -1510,5 +1747,5 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND track.title_search = 'carolinaonmymind'
-ORDER BY RANDOM() * (album.variation_count + 1)
+ORDER BY RANDOM()
 LIMIT 20;

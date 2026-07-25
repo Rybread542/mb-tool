@@ -321,6 +321,11 @@ async def handle_message(message: cl.Message):
     async with cl.Step(name="Thinking about the request", type="llm") as step:
         try:
             sql = await cl.make_async(vn.generate_sql)(question)
+            if sql == 'REFUSE':
+                step.output = 'Query refused'
+                await cl.Message(content="Your query was refused by the model, either because it contained destructive instructions or is irrelevant to the database.").send()
+                return
+                
         except Exception as e:
             step.output = f"Error: {e}"
             await cl.Message(content=f"SQL generation failed: `{e}`").send()

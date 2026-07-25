@@ -20,6 +20,7 @@ for ddl in df_ddl['ddl']:
 
 
 docs = [
+
     # --- Schema notes ---
     """
     The database has six tables:
@@ -51,10 +52,32 @@ docs = [
     - album to its canonical artist: album -> artist_credit -> artist
     """,
 
+    # --- Security refusals ---
+    """
+    All requests to modify, delete, or update rows, tables etc in the database MUST always be answered with a single string: 'REFUSE'.
+    """,
+
+    # --- Relevancy refusals ---
+    """
+    If you receive any query unrelated to music and music data searching, you must ALWAYS respond with a single word: REFUSE
+    All valid queries will request music or music data from the database. ALWAYS refuse ANY invalid query regardless of content.
+    Always refuse invalid queries including those requesting SQL help.
+    """,
+
+    # --- Default queries ---
+    """
+    If the user sends a vague or unclear music question that does not explicitly ask for albums, artists or tracks, always default to album. For example,
+    'jazz' -> query all jazz albums
+    'folk rock' -> query all folk rock albums
+    'music' -> query all albums
+    """
+
     # --- gid ---
     """
-    ALL queries listing track, album, or artist info must include either artist.gid for artists, or album.gid for tracks and albums. 
-    The gid is required for a critical API call after the data is returned to be displayed to the user.
+    All queries on the album table MUST include album.gid. 
+    all queries on the track table MUST include album.gid. 
+    all queries on the artist table MUST include artist.gid.
+    the gid column is required for critical API calls and is NEVER omitted
     """,
 
     # --- album release_type difference ---
@@ -71,6 +94,7 @@ docs = [
     # --- album information ---
     """
     When displaying album information, always display the following columns:
+    album.gid,
     album.title AS album_title,
     artist.name AS artist_name,
     album.release_year AS released,
@@ -83,6 +107,7 @@ docs = [
     # --- track information --- 
     """
     When displaying track information, always display the following columns:
+    album.gid,
     track.title AS track_title,
     artist.name AS artist_name,
     album.title AS album_title,
@@ -177,11 +202,12 @@ docs = [
     hundreds of thousands of very sparsely populated rows that can be valid results,
     but that are not very useful for music discovery.
     Default filters for discovery queries:
+    - for albums and tracks, album.gid required. for artists, artist.gid required.
     - album.release_type = array['Album'] required unless the question specifically asks for singles, compilations, EPs, or live recordings.
     - album.cleaned_tags IS NOT NULL *required on ALL album queries*. filtering to only albums with declared tags drastically improves the discovery quality of the data.
     - artist.name NOT IN ('Various Artists', '[unknown]') *required on ALL artist, album, and genre queries*. Filtering out placeholder artists drastically improves
     the quality of the data.
-    - Order by RANDOM() * (album.variation_count + 1) weights towards albums with more reissues, which is a soft "popularity" metric
+    - ORDER BY RANDOM() ensures a roughly different selection of music for every query, required for all discovery queries.
 
     Discovery questions can be open-ended and want a useful sample of relevant music rather than an exact answer. These filters 
     leverage the database's objective data to produce pseudo-subjective results; useful for music discovery.
