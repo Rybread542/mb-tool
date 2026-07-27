@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
+from training.docs import initial
 import re
     
 
@@ -51,7 +52,9 @@ def get_vn():
         'options' : {
             'temperature' : 0,
             'num_ctx' : 8192
-        }
+        },
+        'initial_prompt' : initial,
+        'n_results' : 20
     })
 
     vn.connect_to_postgres(

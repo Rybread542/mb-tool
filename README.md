@@ -15,14 +15,14 @@ If you go to the schema page you can see a ton of other schema visuals and more 
 
 MusicBrainz, while extremely cool, has essentially no useful or intuitive way to really *dig* into the vast, layered abyss that is (theoretically) all music ever publically recognized.  
 
-For the purposes of this app, I took a complete snapshot and pruned it aggressively down to very surface-level metadata: artist, track, album, release year, release type, track duration, and the great and terrible tags arrays which pulls the whole thing together, and that I will cover later.
+For the purposes of this app, I took a complete snapshot and pruned it aggressively down to very surface-level metadata: artist, track, album, release year, release type, track duration, and the rabbit hole of tags arrays which pull the whole thing together, and that I will cover in depth later.
 
 ## Functionality
 
 By itself, the database isn't all that useful unless I want to list some discographies or perhaps marvel at the [123 distinct releases of *The Dark Side of the Moon*.](https://musicbrainz.org/release-group/f5093c06-23e3-404f-aeaa-40f72885ee3a) Enter ollama. At first, I had intended for the model to be trained on purely statistical data interpretations, i.e. something like *`when approximately did Disco die?`* or tracking release trends over time. While the model is trained to answer very simple statistical questions, I ultimately decided to go heavy into discovery being the main function. 
 
 ## How it works
-The main function of the app revolves around three output types: `track`, `album`, and `artist`. The main loop is as follows:
+The main function of the app revolves around three output types: `track`, `album`, and `artist`. The loop is as follows:
 
 1. The user asks the chatbot for either one of the three types of output (a *Discovery* query) plus search criteria, or a question about the literal database information (a *Statistical* query)
 2. The model translates the user's request into a SQL query trained on the shape of the database schema
@@ -43,14 +43,14 @@ Three main tables, plus relevant filter columns:
 - `album`: the "canonical" release, meaning the original release of a given album. Therefore, there is a single row per unique album. `release_group` from the MB schema. 
     - `album.release_year`: the central crux of all queries having to do with decades in music or just general time period filtering
 
-    - `album.release_type`: every album has a type. The basic type is `Album`, or just a standard studio album. Other important types include `Live`, `Compilation`, `EP`, `Remix`, `Demo`. 
+    - `album.release_type`: every album has a type. The basic type is `Album`, or just a standard studio album. Other important types include `Live`, `Compilation`, `EP`, `Remix`, `Demo`. Release type is stored in an array, so a single album can have multiple, for example `['Album', 'Live']`.
 
     - `album.duration`: same idea as with tracks, but calculated and given a dedicated column for simplicity.
 
     - `album.title_search`: normalized title, same as with tracks.
 
 - `artist`: the "canonical" artist name.
-    - `artist.nationality`: artist's country of origin. Importantly, this does not guarantee music in a certain language (but that's coming soon!), just the country the artist is from.
+    - `artist.nationality`: In hindsight, a slightly misleading column title. This describes the artist's place of origin, which can include countries, US states and cities. For the most part it is in fact just countries, but there are a significant number of large cities that appear like `Chicago` (but there is no Illinois), `Paris` (while *also* including France), and other oddities like `United Kingdom` being the closest you can get to England, Ireland and Scotland
 
     - `artist.name_search`: normalized name, same as with albums and tracks.
 
@@ -62,7 +62,7 @@ Two auxiliary, fanned-out tables:
 
 And one utility table purely to aid discovery:
 - `similar_artist`: a many (similar artist id) to one (artist id) join table, created using the [ListenBrainz similar-artists API](https://labs.api.listenbrainz.org/similar-artists).
-    - [ListenBrainz](https://listenbrainz.org) is, more or less, a worse last.fm. It is a free public logging tool for your music listening over time, allowing to track your listening trends. 
+    - [ListenBrainz](https://listenbrainz.org) is very similar to last.fm. It is a free public logging tool for your music listening over time, allowing to track listening trends. 
 
     - The similar-artist API uses their algorithms to, given an input artist, find a list of up to 100 "similar" artists based on user listening data. Essentially, the artists that listeners of the given artist *also* listen to most frequently.
 
@@ -97,9 +97,9 @@ And just for fun, here's an excerpt from the track tags:
 
 Truly bizarre. So, I decided to clean all of it up. 
 
-I first collected every unique tag in the database into an array in a text file, one file for albums, artists, and tracks. I then set up a connection to OpenAI's API to automate the actual cleaning because, as you can imagine, there were many *tens of thousands* of strings to look through. 
+I first collected every unique tag in the database into an array in a text file, one file for albums, artists, and tracks. I then set up a connection to OpenAI's API to automate the actual cleaning because, as you can imagine, there were many tens of thousands of strings to look through. 
 
-I wrote instructions to essentially prune all strings from the given array that had nothing to do with music genres. As this was early 2025, the flagship LLMs were good but not quite as powerful as they are today, so I had it work with small batches of strings over many hours to avoid context window problems with output quality. 
+I wrote instructions to prune all strings from the given array that had nothing to do with music genres. As this was early 2025, the flagship LLMs were good but not quite as powerful as they are today, so I had it work with small batches of strings over many hours to avoid context window problems with output quality. 
 
 The result was three reduced and cleaned genre tag arrays. Not perfect, but vastly improved over the raw tag data. Finally, I took each of these tag arrays and ran them against each row of their respective tables. For each row, all tags in the array that did not appear in the master array were removed.
 
@@ -107,7 +107,7 @@ The final product is the `cleaned_tags` array column on each of the main three t
 
 
 ### Querying tags
-Rows on `album`, `artist`, and `track`** have arrays of tags that display genre and sub genres which allow for powerful genre-based discovery queries.
+Rows on `album`, `artist`, and `track`** can have an array of tags that display **genres** and **sub genres** which allow for powerful genre-based discovery queries.
 
 For example, here are the tags for Steely Dan's *Gaucho*:
 
@@ -123,7 +123,7 @@ What this means is if you ask for `rock` albums, you can receive results that ar
 
 On the other hand, **sub genres are matched exactly.** Searching for `smooth jazz` will not inherently return other types of jazz, unless the result also happens to have another jazz tag. Searching for a sub genre guarantees that it will appear at least once.
 
-** *For simplicity and consistency, all track queries actually use the more comprehensive **album tags** when searching based on genre, rather than track-level tags. This is explained more in the **Limitations** section.*
+** *For simplicity and consistency, all track queries actually use the more comprehensive **album tags** when searching based on genre, rather than track-level tags. This is explained more below.*
 
 
 ## Putting it all together
@@ -175,7 +175,7 @@ The `WHERE` clause has a few standard shapes which do heavy lifting to remove no
 
     - This cuts the total number of valid album rows to just under half (~1.4m tagged from ~3.6m total) but remains a substantial number. Millions of rows in the database are for music or performances that cannot possibly be found online to listen to because anyone can add anything to the database. So, we do as much as we can to remove junk rows. 
 
-    - This filter also allows us to return single tracks that are **not** tagged from albums that **are**, actually increasing the number of possible track results for a given query.
+    - This filter also allows us to return single tracks that are **not** tagged from albums that **are**, increasing the number of possible track results for a given query.
 
 - `artist.name NOT IN ('Various Artists', '[unknown]')` removes more junk, but technically also cuts real compilations that have many artists. I decided this tradeoff is worth it.
 
@@ -189,7 +189,7 @@ The `WHERE` clause has a few standard shapes which do heavy lifting to remove no
 
 - `ORDER BY RANDOM()` roughly get something different every time
 
-I ran this while writing and got an album named *Troll, Vol. 2*. Weird stuff. 
+I ran this while writing and got an album named [*Troll, Vol. 2*](https://open.spotify.com/album/56a9BXRBwmT3twepXOrVHl). Weird stuff. 
 
 ## Limitations and problems
 
@@ -202,14 +202,23 @@ Speaking of tags, while the majority of rows lack tags altogether, a significant
 adult alternative pop rock, art pop, art rock, baroque pop, beat, beat music, blues rock, british invasion, british psychedelia, british rhythm & blues, britpop, classical pop, classic pop and rock, classic rock, europop, experimental, experimental rock, film soundtrack, folk pop, folk rock, folk-rock, garage, hair metal, hard rock, heavy metal, indie rock, instrumental pop, mainstream rock, merseybeat, orchestral, orchestral pop, pop, pop-metal, pop rock, pop-rock, progressive rock, psychedelia, psychedelic, psychedelic pop, psychedelic rock, rhythm & blues, rock, rock and roll, rock & roll, rock roll, singer songwriter, sunshine pop
 ```
 
-Is all of this technically true? Sure...hair metal? what? because of helter skelter? The result though is that when you *are* looking for some neat new hair metal bands (or art pop or signer songwriter or folk or...), you might get a visit from everyone's favorite boys.
+Is all of this technically true? Sure...hair metal? what? because of helter skelter? The result though is that when you *are* looking for some neat new hair metal bands (or art pop or singer songwriter or folk or...), you might get a visit from everyone's favorite boys.
 
 Through data cleaning and strict filtering rules, we can fairly consistently get results that are pretty good; "good" in this case meaning easy to find and listen to, and roughly the correct genre(s). 
 
 ### Not enough data
-Millions of rows are missing data the excludes them entirely from being discovered by this app. Primarily tags of course which are the main problem, but also smaller things that can be useful like artist nationality, even song duration doesn't exist if nobody ever adds it. The data can still be useful for statistical queries, but for discovery there is simply no point in displaying an album title and artist with no other identifying information, so we don't.
+Millions of rows are missing data that excludes them entirely from being discovered by this app. Primarily tags of course which are the main problem, but also smaller things that can be useful like artist nationality, even song duration doesn't exist if nobody ever adds it. The data can still be useful for statistical queries, but for discovery there is simply no point in displaying an album title and artist with no other identifying information, so we don't.
 
 ### Subjective querying
-Back to tags again. As discussed, tags lean objective. Genre, sub genre. There are exceptions, but for all but the most popular music there is nothing in the way of musical qualities: ethereal, upbeat, melancholy, noisy...tags you can very easily find on a website like [Rate Your Music](https://rateyourmusic.com). These things don't exist in the database and currently I don't know of a feasible way to make that happen. Maybe if RYM ever gets their API online...
+Back to tags again. As discussed, tags lean objective. Genre, sub genre. There are exceptions, but for all but the most popular music there is nothing in the way of musical qualities: ethereal, upbeat, melancholy, noisy. Something you can very easily find on a website like [Rate Your Music](https://rateyourmusic.com). These things don't exist in the MB database and currently I don't know of a feasible way to make that happen. Maybe if RYM ever gets their API online...
 
+
+## Future updates
+A brief list of things I either have planned or would like to figure out how to implement, roughly in order of priority:
+
+- **Track language**: Very doable and rather simple since MB has this natively. Most likely the next major feature.
+
+- **More external links**: Right now this app has a Spotify bias. A link to YouTube Music for starters, and maybe other places like Discogs or RYM.
+
+- **Descriptive tags**: Someday.
 
