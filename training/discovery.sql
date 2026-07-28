@@ -4126,7 +4126,7 @@ AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%ambient%')
 ORDER BY RANDOM()
 LIMIT 10;
 
---indie music
+--indie pop music
 SELECT
 
 album.gid,
@@ -4147,7 +4147,7 @@ ON ac.artist_id = artist.id
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
-AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%indie%')
+AND album.cleaned_tags && array['indie pop']
 ORDER BY RANDOM()
 LIMIT 10;
 
@@ -4250,6 +4250,285 @@ AND album.release_type = array['Album']
 AND album.cleaned_tags && array['chillwave']
 ORDER BY RANDOM()
 LIMIT 10;
+
+--rock
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%rock%')
+ORDER BY RANDOM()
+LIMIT 10;
+
+--rock music
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%rock%')
+ORDER BY RANDOM()
+LIMIT 10;
+
+--rock albums
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%rock%')
+ORDER BY RANDOM()
+LIMIT 10;
+
+--pop music
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%pop%')
+ORDER BY RANDOM()
+LIMIT 10;
+
+--pop
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%pop%')
+ORDER BY RANDOM()
+LIMIT 10;
+
+--pop rock music
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['pop rock']
+ORDER BY RANDOM()
+LIMIT 10;
+
+--pop rock
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['pop rock']
+ORDER BY RANDOM()
+LIMIT 10;
+
+--soft rock
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['soft rock']
+ORDER BY RANDOM()
+LIMIT 10;
+
+--soft rock albums
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['soft rock']
+ORDER BY RANDOM()
+LIMIT 10;
+
+--hard rock albums
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['hard rock']
+ORDER BY RANDOM()
+LIMIT 10;
+
+--hard rock
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['hard rock']
+ORDER BY RANDOM()
+LIMIT 10;
+
+
+
+
 
 
 
@@ -4706,6 +4985,31 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND album.release_year BETWEEN 2000 AND 2009
+ORDER BY RANDOM()
+LIMIT 10;
+
+--80s music
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 1980 AND 1989
 ORDER BY RANDOM()
 LIMIT 10;
 
@@ -6273,6 +6577,84 @@ AND album.release_year BETWEEN 1990 AND 1999
 ORDER BY RANDOM()
 LIMIT 10;
 
+--90s soft rock
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['soft rock']
+AND album.release_year BETWEEN 1990 AND 1999
+ORDER BY RANDOM()
+LIMIT 10;
+
+--90s pop rock
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['pop rock']
+AND album.release_year BETWEEN 1990 AND 1999
+ORDER BY RANDOM()
+LIMIT 10;
+
+--90s indie rock
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['indie rock']
+AND album.release_year BETWEEN 1990 AND 1999
+ORDER BY RANDOM()
+LIMIT 10;
+
 --90s rock albums
 SELECT
 
@@ -6322,6 +6704,58 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type && array['Live']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%rock%')
 AND album.release_year BETWEEN 1990 AND 1999
+ORDER BY RANDOM()
+LIMIT 10;
+
+--90s pop
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%pop%')
+AND album.release_year BETWEEN 1990 AND 1999
+ORDER BY RANDOM()
+LIMIT 10;
+
+--2000s indie pop
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['indie pop']
+AND album.release_year BETWEEN 2000 AND 2009
 ORDER BY RANDOM()
 LIMIT 10;
 
@@ -7116,9 +7550,109 @@ AND artist.nationality = 'United States'
 ORDER BY RANDOM()
 LIMIT 10;
 
+--japanese indie pop albums
+SELECT
 
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
 
+FROM album
 
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['indie pop']
+AND artist.nationality = 'Japan'
+ORDER BY RANDOM()
+LIMIT 10;
+
+--japanese indie music
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%indie%')
+AND artist.nationality = 'Japan'
+ORDER BY RANDOM()
+LIMIT 10;
+
+--japanese pop rock albums
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['pop rock']
+AND artist.nationality = 'Japan'
+ORDER BY RANDOM()
+LIMIT 10;
+
+--japanese pop albums
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%pop%')
+AND artist.nationality = 'Japan'
+ORDER BY RANDOM()
+LIMIT 10;
 
 --------------------------------------------------------------[album] artist name + genre wordings
 
