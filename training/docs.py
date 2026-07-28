@@ -76,45 +76,70 @@ docs_arr = [
     """
     When searching for albums, artists, and tracks with a genre given by the user,
     matching genre tags depends on the scope of the genre asked for by the user.
-    The genre will be either BROAD or SPECIFIC.
+    Determining the genre involves two steps:
 
-    - A BROAD genre must be substring matched using unnest to include subgenres in result sets:
+    1. Delimit: treat the longest running set of adjacent genre words as a SINGLE genre.
+    NEVER split multi-word genre phrases into individual genres.
+        'indie pop albums' -> single genre 'indie pop'
+        'pop rock songs' -> single genre 'pop rock'
+        'folk rock artists' -> single genre 'folk rock'
+    two or more distinct genres can ONLY exist if the user joins them with 'and', 'or', 'both x and y', 'plus', 'also'
+        'jazz and fusion albums' -> two genres 'jazz', 'fusion'
+        'rock or pop songs' -> two genres 'rock', 'pop'
+
+    
+    2. Classify each word from step 1 as BROAD or SPECIFIC.
+    A phrase is only BROAD if the full phrase appears in the BROAD list. Any phrase of two or more words
+    is SPECIFIC, even if it is made up of words in the BROAD list. Any single word that does not appear
+    in the BROAD list is always SPECIFIC.
+
+    BROAD words include:
+    'rock', 'pop', 'metal', 'jazz', 
+    'blues', 'folk', 'house', 'techno', 
+    'trance', 'ambient', 'soul', 'disco', 
+    'indie', 'funk', 'country', 'r&b', 
+    'classical', 'symphonic', 'orchestral'
+
+    - A BROAD word must be substring matched to include subgenres:
     AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%rock%')
 
-    - A SPECIFIC genre must be EXACTLY matched when filtering using overlap:
+    - A SPECIFIC word must be EXACTLY matched using overlap:
         AND album.cleaned_tags && array['krautrock']
         AND album.cleaned_tags && array['shoegaze']
         AND album.cleaned_tags && array['psychedelic rock']
         AND album.cleaned_tags && array['indie pop']
-    Do not substring match on a SPECIFIC genre. This will produce unrelated tags and must be avoided.
+        AND album.cleaned_tags && array['folk rock']
 
-    BROAD genres include:
-    'rock', 'pop', 'metal', 'jazz', 'blues', 'folk', 'house', 'techno', 'trance', 'ambient', 'soul', 'disco', 'indie', 'funk', 'country', 'hip hop', 'r&b', 'classical', 'symphonic', 'orchestra'
-
-    Common SPECIFIC genres include:
-    ALL subgenres: 'post rock', 'doom metal', 'progressive house', 'cool jazz', 'folk rock', 'deep house' etc
-    Or any genre that is not BROAD. If a genre is not in the BROAD list, always assume it is SPECIFIC, and use && array['<genre>']
+    Do not substring match on a SPECIFIC genre. This will produce unrelated tags and must be avoided:
+    User asks for "indie pop albums"
+    WRONG:
+        AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%indie%')
+        AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%pop%')
+    RIGHT:
+        AND album.cleaned_tags && array['indie pop']
 
     TRAPS - these look like broad genres, but substring-matching them produces wrong
     results:
-    - 'dub' substring-matches 'dubstep' (unrelated). Always exact.
+    - 'dub' substring-matches 'dubstep' (unrelated). Always SPECIFIC.
     - 'wave' covers 'new wave', 'vaporwave', 'dark wave', 'synthwave' —
-    all unrelated. Always exact for any 'wave' subgenre.
-    - 'hardcore' spans punk and electronic families. Always exact.
-    - 'experimental' is a descriptor across genres, always exact.
-    - 'rap' matches to trap. always exact even though there are subgenres.
+    all unrelated. Always SPECIFIC for any 'wave' subgenre.
+    - 'hardcore' spans punk and electronic families. Always SPECIFIC.
+    - 'experimental' is a descriptor across genres, always SPECIFIC.
+    - 'rap' matches to trap. always SPECIFIC even though there are subgenres.
 
-    Vocab matching shortcuts:
-    prog, prog rock -> progressive rock
-    prog metal -> progressive metal
-    bossa -> bossa nova
-    alt rock -> alternative rock
-    psych, psychedelia -> psychedelic
-    post rock -> post-rock
-    synthpop, synth pop -> synth-pop
-    kpop -> k-pop
+    Vocab matching shortcuts, all SPECIFIC:
+    prog, prog rock -> 'progressive rock'
+    prog metal -> 'progressive metal'
+    bossa -> 'bossa nova'
+    alt rock -> 'alternative rock'
+    psych, psychedelia -> 'psychedelic'
+    post rock -> 'post-rock'
+    synthpop, synth pop -> 'synth-pop'
+    kpop -> 'k-pop'
 
-    hiphop, hip hop -> EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%hip%hop%') - many entries with 'hip hop' and 'hip-hop'
+    EXCEPTIONS:
+    'hiphop' 'hip hop' is an exact special case. there is data with both 'hip hop' and 'hip-hop'. therefore, always use the following:
+    AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%hip%hop%')
     """,
 
     # --- Nationality ---
