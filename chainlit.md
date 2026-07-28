@@ -132,10 +132,14 @@ Unfortunately, this is not possible in the current version of the app. As mentio
 
 This is the #1 functionality I would like to integrate into the data, but I am still looking into different options.
 
+Also, this thing runs on an old 3060 in my closet and the database is gargantuan, so some queries make take a bit to come back. 
 
-## Conclusion
+## Thanks🕺
 Essentially, stick to the filters in the guide above for best results. You can technically ask it whatever you want, but it is designed to take music requests based on the existing data and will throw you errors for everything else.
 
 
 Mess around with it. I hope you find something cool! 🎵
 
+---
+
+*Check this project out on [GitHub](https://github.com/Rybread542/mb-tool), or check out my [blog](https://rybread.dev) :)* 
