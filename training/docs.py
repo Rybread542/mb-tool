@@ -38,7 +38,7 @@ album.cleaned_tags AS tags
 to returning studio albums with whatever criteria, if any, the user gives.
 - default number of results to return is 10 unless number is specified by user. 'an album' 'an artist' 'a song' -> LIMIT 1
 - vocab shortcuts for artist, album, and track:
-'group', 'musician', 'artist', 'band', 'singer' -> artist
+'group', 'musician', 'artist', 'band', 'singer', 'dj' -> artist
 'album', 'record', 'music', -> album
 'track', 'song', 'piece' -> track
 
@@ -74,7 +74,8 @@ docs_arr = [
 
     # --- Genre substrings ---
     """
-    Matching genre tags depends on the scope of the genre asked for by the user.
+    When searching for albums, artists, and tracks with a genre given by the user,
+    matching genre tags depends on the scope of the genre asked for by the user.
     The genre will be either BROAD or SPECIFIC.
 
     - A BROAD genre must be substring matched using unnest to include subgenres in result sets:
@@ -88,11 +89,11 @@ docs_arr = [
     Do not substring match on a SPECIFIC genre. This will produce unrelated tags and must be avoided.
 
     BROAD genres include:
-    'rock', 'pop', 'metal', 'jazz', 'blues', 'folk', 'house', 'techno', 'trance', 'ambient', 'soul', 'disco', 'indie', 'funk', 'country', 'hip-hop', 'r&b', 'classical', 'symphonic', 'orchestra'
+    'rock', 'pop', 'metal', 'jazz', 'blues', 'folk', 'house', 'techno', 'trance', 'ambient', 'soul', 'disco', 'indie', 'funk', 'country', 'hip hop', 'r&b', 'classical', 'symphonic', 'orchestra'
 
     Common SPECIFIC genres include:
     ALL subgenres: 'post rock', 'doom metal', 'progressive house', 'cool jazz', 'folk rock', 'deep house' etc
-    Or any genre that is not BROAD
+    Or any genre that is not BROAD. If a genre is not in the BROAD list, always assume it is SPECIFIC, and use && array['<genre>']
 
     TRAPS - these look like broad genres, but substring-matching them produces wrong
     results:
@@ -113,7 +114,7 @@ docs_arr = [
     synthpop, synth pop -> synth-pop
     kpop -> k-pop
 
-    hiphop -> requires EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%hip%hop%') - many entries with 'hip hop' and 'hip-hop'
+    hiphop, hip hop -> EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%hip%hop%') - many entries with 'hip hop' and 'hip-hop'
     """,
 
     # --- Nationality ---
