@@ -4126,6 +4126,56 @@ AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%ambient%')
 ORDER BY RANDOM()
 LIMIT 10;
 
+--indie music
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%indie%')
+ORDER BY RANDOM()
+LIMIT 10;
+
+--indie albums
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%indie%')
+ORDER BY RANDOM()
+LIMIT 10;
+
 --death metal albums
 SELECT
 
@@ -4148,6 +4198,31 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND album.cleaned_tags && array['death metal']
+ORDER BY RANDOM()
+LIMIT 10;
+
+--indie pop albums
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['indie pop']
 ORDER BY RANDOM()
 LIMIT 10;
 
@@ -5808,31 +5883,6 @@ AND NOT EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%bebop%
 ORDER BY RANDOM()
 LIMIT 10;
 
---jazz and fusion albums
-SELECT
-
-album.gid,
-artist.name AS artist_name,
-album.title AS album_title,
-album.release_year AS released,
-to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
-album.cleaned_tags AS tags
-
-FROM album
-
-JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
-ON ac.artist_id = artist.id
-
-WHERE album.cleaned_tags IS NOT NULL
-AND artist.name NOT IN ('Various Artists', '[unknown]')
-AND album.release_type = array['Album']
-AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%jazz%')
-AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%fusion%')
-ORDER BY RANDOM()
-LIMIT 10;
 
 --jazz fusion albums
 SELECT
