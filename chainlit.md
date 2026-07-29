@@ -7,7 +7,7 @@ This app serves as an exploratory tool into a minimized snapshot (March 2025) of
 
 Ask the bot for **artists**, **albums**, or **songs** along with a number of criteria you specify. The bot will search the database and present you with a group of random results based on your request.
 
-This is not a standard chatbot in that it is **one input -> one output** and does not remember chat history. It's sole function is to search the database.
+This is not a standard chatbot in that it is **one input -> one output** and does not remember chat history. Its sole function is to search the database.
 
 ## Available filters
 
