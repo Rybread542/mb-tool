@@ -132,7 +132,7 @@
             "title": "Settings panel",
             "customize": "Customize your chat settings here"
         },
-        "watermark": "LLMs can make mistakes, but not this one. so don't worry about it :)"
+        "watermark": "Spotify links are fuzzy and may be wildly incorrect, try manually searching if necessary"
     },
     "threadHistory": {
         "sidebar": {

@@ -80,8 +80,7 @@ def _cached(key, fetch):
 
 
 def _clean(s):
-    # Strip quotes so they don't break the search query syntax.
-    return (s or "").replace('"', "").strip()
+    return " ".join((s or "").split())
 
 
 def album_link(title, artist):
@@ -89,10 +88,10 @@ def album_link(title, artist):
     title, artist = _clean(title), _clean(artist)
     if not sp or not title:
         return None
-    key = f"album|{artist.lower()}|{title.lower()}"
+    key = f"v2|album|{artist.lower()}|{title.lower()}"
 
     def fetch():
-        q = f'album:"{title}"' + (f' artist:"{artist}"' if artist else "")
+        q = f"{title} {artist}".strip()
         items = sp.search(q=q, type="album", limit=1).get("albums", {}).get("items", [])
         return items[0]["external_urls"].get("spotify") if items else None
 
@@ -104,10 +103,10 @@ def track_link(track, artist):
     track, artist = _clean(track), _clean(artist)
     if not sp or not track:
         return None
-    key = f"track|{artist.lower()}|{track.lower()}"
+    key = f"v2|track|{artist.lower()}|{track.lower()}"
 
     def fetch():
-        q = f'track:"{track}"' + (f' artist:"{artist}"' if artist else "")
+        q = f"{track} {artist}".strip()
         items = sp.search(q=q, type="track", limit=1).get("tracks", {}).get("items", [])
         return items[0]["external_urls"].get("spotify") if items else None
 
@@ -120,10 +119,10 @@ def artist_info(name, gid=None):
     name = _clean(name)
     if not sp or not name:
         return {"link": None, "image": None}
-    key = f"artist|{gid or name.lower()}"
+    key = f"v2|artist|{gid or name.lower()}"
 
     def fetch():
-        items = sp.search(q=f'artist:"{name}"', type="artist", limit=1).get("artists", {}).get("items", [])
+        items = sp.search(q=name, type="artist", limit=1).get("artists", {}).get("items", [])
         if not items:
             return {"link": None, "image": None}
         a = items[0]

@@ -468,6 +468,36 @@ AND artist.cleaned_tags && array['edm']
 ORDER BY RANDOM()
 LIMIT 10;
 
+--dnb djs
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['drum and bass']
+ORDER BY RANDOM()
+LIMIT 10;
+
+--drum and bass djs
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['drum and bass']
+ORDER BY RANDOM()
+LIMIT 10;
+
 --composers
 SELECT
 
@@ -725,6 +755,23 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%jazz%')
 ORDER BY RANDOM()
 LIMIT 10;
+
+
+--downtempo artists
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['downtempo']
+ORDER BY RANDOM()
+LIMIT 10;
+
 
 
 
@@ -3175,6 +3222,8 @@ AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%electronic
 ORDER BY RANDOM()
 LIMIT 10;
 
+
+
 --electro music
 SELECT
 
@@ -3297,6 +3346,109 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND album.cleaned_tags && array['edm']
+ORDER BY RANDOM()
+LIMIT 10;
+
+--instrumental albums
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%instrumental%')
+ORDER BY RANDOM()
+LIMIT 10;
+
+--instrumental rock albums
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%instrumental%')
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%rock%')
+ORDER BY RANDOM()
+LIMIT 10;
+
+--instrumental jazz albums
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%instrumental%')
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%jazz%')
+ORDER BY RANDOM()
+LIMIT 10;
+
+--instrumental prog albums
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%instrumental%')
+AND album.cleaned_tags && array['progressive rock']
 ORDER BY RANDOM()
 LIMIT 10;
 
@@ -3447,6 +3599,32 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND album.cleaned_tags && array['nu metal']
+ORDER BY RANDOM()
+LIMIT 10;
+
+--psychedelic rock
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['psychedelic rock']
+AND album.release_year BETWEEN 1950 AND 2000
 ORDER BY RANDOM()
 LIMIT 10;
 
@@ -4526,7 +4704,55 @@ AND album.cleaned_tags && array['hard rock']
 ORDER BY RANDOM()
 LIMIT 10;
 
+--trance
+SELECT
 
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%trance%')
+ORDER BY RANDOM()
+LIMIT 10;
+
+--trance albums
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%trance%')
+ORDER BY RANDOM()
+LIMIT 10;
 
 
 
@@ -5214,6 +5440,30 @@ AND album.release_type && array['DJ-mix']
 ORDER BY RANDOM()
 LIMIT 10;
 
+--mixes
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type && array['DJ-mix']
+ORDER BY RANDOM()
+LIMIT 10;
+
 --sets
 SELECT
 
@@ -5235,6 +5485,30 @@ ON ac.artist_id = artist.id
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type && array['DJ-mix']
+ORDER BY RANDOM()
+LIMIT 10;
+
+--remixes
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type && array['Remix']
 ORDER BY RANDOM()
 LIMIT 10;
 
@@ -5853,6 +6127,81 @@ AND album.cleaned_tags && array['trap']
 ORDER BY RANDOM()
 LIMIT 10;
 
+--trap mixes
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type && array['DJ-mix']
+AND album.cleaned_tags && array['trap']
+ORDER BY RANDOM()
+LIMIT 10;
+
+--downtempo mixes
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type && array['DJ-mix']
+AND album.cleaned_tags && array['trap']
+ORDER BY RANDOM()
+LIMIT 10;
+
+--downtempo remixes
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type && array['Remix']
+AND album.cleaned_tags && array['trap']
+ORDER BY RANDOM()
+LIMIT 10;
+
 --live house mixes
 SELECT
 
@@ -5900,6 +6249,81 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type @> array['Live', 'DJ-mix']
 AND album.cleaned_tags && array['deep house']
+ORDER BY RANDOM()
+LIMIT 10;
+
+--dnb mixes
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type @> array['DJ-mix']
+AND album.cleaned_tags && array['drum and bass]
+ORDER BY RANDOM()
+LIMIT 10;
+
+--drum and bass mixes
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type @> array['DJ-mix']
+AND album.cleaned_tags && array['drum and bass]
+ORDER BY RANDOM()
+LIMIT 10;
+
+--drum and bass remixes
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type @> array['Remix']
+AND album.cleaned_tags && array['drum and bass]
 ORDER BY RANDOM()
 LIMIT 10;
 
@@ -8508,6 +8932,71 @@ AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%folk%')
 ORDER BY RANDOM()
 LIMIT 10;
 
+--instrumental songs
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+track.title AS track_title,
+album.release_year AS released,
+to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM track
+
+JOIN album_variations av
+ON track.album_id = av.id AND av.is_canonical
+
+JOIN album
+ON av.album_group = album.id
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%instrumental%')
+ORDER BY RANDOM()
+LIMIT 10;
+
+--instrumental rock songs
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+track.title AS track_title,
+album.release_year AS released,
+to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM track
+
+JOIN album_variations av
+ON track.album_id = av.id AND av.is_canonical
+
+JOIN album
+ON av.album_group = album.id
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%instrumental%')
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%rock%')
+ORDER BY RANDOM()
+LIMIT 10;
+
 --house tracks
 SELECT
 
@@ -8665,6 +9154,38 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%punk%')
+ORDER BY RANDOM()
+LIMIT 10;
+
+--trance tracks
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+track.title AS track_title,
+album.release_year AS released,
+to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM track
+
+JOIN album_variations av
+ON track.album_id = av.id AND av.is_canonical
+
+JOIN album
+ON av.album_group = album.id
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%trance%')
 ORDER BY RANDOM()
 LIMIT 10;
 
@@ -8989,7 +9510,69 @@ AND album.cleaned_tags && array['drone']
 ORDER BY RANDOM()
 LIMIT 10;
 
+--cool jazz songs
+SELECT
 
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+track.title AS track_title,
+album.release_year AS released,
+to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM track
+
+JOIN album_variations av
+ON track.album_id = av.id AND av.is_canonical
+
+JOIN album
+ON av.album_group = album.id
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['cool jazz']
+ORDER BY RANDOM()
+LIMIT 10;
+
+--smooth jazz songs
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+track.title AS track_title,
+album.release_year AS released,
+to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM track
+
+JOIN album_variations av
+ON track.album_id = av.id AND av.is_canonical
+
+JOIN album
+ON av.album_group = album.id
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['smooth jazz']
+ORDER BY RANDOM()
+LIMIT 10;
 
 
 
@@ -10700,7 +11283,7 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND album.cleaned_tags && array['classical']
-AND artist.nationality = 'Spanish'
+AND artist.nationality = 'Spain'
 ORDER BY RANDOM()
 LIMIT 10;
 

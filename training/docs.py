@@ -88,35 +88,36 @@ docs_arr = [
         'rock or pop songs' -> two genres 'rock', 'pop'
 
     
-    2. Classify each word from step 1 as BROAD or SPECIFIC.
-    A phrase is only BROAD if the full phrase appears in the BROAD list. Any phrase of two or more words
-    is SPECIFIC, even if it is made up of words in the BROAD list. Any single word that does not appear
-    in the BROAD list is always SPECIFIC.
+    2. Classify the word from step 1 as BROAD or SPECIFIC.
+    A phrase is only BROAD if it appears in the BROAD list. Any phrase of two or more words
+    is SPECIFIC, even if it is made up of words in the BROAD list.
 
-    BROAD words include:
+    BROAD list:
     'rock', 'pop', 'metal', 'jazz', 
     'blues', 'folk', 'house', 'techno', 
     'trance', 'ambient', 'soul', 'disco', 
     'indie', 'funk', 'country', 'r&b', 
-    'classical', 'symphonic', 'orchestral'
+    'classical', 'symphonic', 'orchestral',
+    'psychedelic'
 
     - A BROAD word must be substring matched to include subgenres:
     AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%rock%')
 
-    - A SPECIFIC word must be EXACTLY matched using overlap:
+    - Any word that does not appear in the BROAD list is SPECIFIC.
+
+    - A SPECIFIC word must be EXACTLY matched with overlap:
         AND album.cleaned_tags && array['krautrock']
         AND album.cleaned_tags && array['shoegaze']
         AND album.cleaned_tags && array['psychedelic rock']
         AND album.cleaned_tags && array['indie pop']
         AND album.cleaned_tags && array['folk rock']
 
-    Do not substring match on a SPECIFIC genre. This will produce unrelated tags and must be avoided:
-    User asks for "indie pop albums"
-    WRONG:
-        AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%indie%')
-        AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%pop%')
-    RIGHT:
-        AND album.cleaned_tags && array['indie pop']
+    Never use substring match on a SPECIFIC word. This will produce unrelated tags.
+    Conventions:
+    BROAD 'pop albums' -> AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%pop%')
+    BROAD 'punk albums' -> AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%punk%')
+    SPECIFIC 'pop punk albums' -> AND album.cleaned_tags && array['pop punk']
+    SPECIFIC 'chillstep tracks' -> AND album.cleaned_tags && array['chillstep']
 
     TRAPS - these look like broad genres, but substring-matching them produces wrong
     results:
@@ -127,15 +128,15 @@ docs_arr = [
     - 'experimental' is a descriptor across genres, always SPECIFIC.
     - 'rap' matches to trap. always SPECIFIC even though there are subgenres.
 
-    Vocab matching shortcuts, all SPECIFIC:
+    Vocab matching shortcuts, always SPECIFIC:
     prog, prog rock -> 'progressive rock'
     prog metal -> 'progressive metal'
     bossa -> 'bossa nova'
     alt rock -> 'alternative rock'
-    psych, psychedelia -> 'psychedelic'
     post rock -> 'post-rock'
     synthpop, synth pop -> 'synth-pop'
     kpop -> 'k-pop'
+    dnb, drum and bass -> 'drum and bass'
 
     EXCEPTIONS:
     'hiphop' 'hip hop' is an exact special case. there is data with both 'hip hop' and 'hip-hop'. therefore, always use the following:
