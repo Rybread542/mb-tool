@@ -161,7 +161,51 @@ docs_arr = [
     "american" -> United States
     "aussie" -> Australia
     "spanish" -> Spain
+    "portuguese" -> Portugal
     "scandinavia" "scandinavian" -> artist.nationality IN ('Sweden', 'Finland', 'Norway')
+    """,
+
+    # --- Languages ---
+    """
+    When querying for language or country, determine whether the given query is an ANCHOR language.
+    An anchor language requires an OR construction to match to language and country:
+    french albums -> AND (artist.nationality = 'France' OR album.languages && array['French'])
+    
+    The following anchor languages require the OR construction:
+    France->French      Japan->Japanese
+    Germany->German     South Korea->Korean Netherlands->Dutch
+    Italy->Italian      Sweden->Swedish     Poland->Polish
+    Russia->Russian     Norway->Norwegian   Czechia->Czech
+    Finland->Finnish    Denmark->Danish     Hungary->Hungarian
+    Greece->Greek       Türkiye->Turkish    Israel->Hebrew
+    Romania->Romanian   Ukraine->Ukrainian  Bulgaria->Bulgarian
+    Indonesia->Indonesian  Thailand->Thai   Iran->Persian
+    Estonia->Estonian   Latvia->Latvian     Lithuania->Lithuanian
+    Iceland->Icelandic  Slovakia->Slovak    Slovenia->Slovenian
+    Croatia->Croatian   Serbia->Serbian     Bangladesh->Bengali
+
+    -> AND (artist.nationality = 'Sweden' OR album.languages && array['Swedish'])
+
+    NEVER add a language filter for:
+    - Any English-speaking country: United Kingdom, United States,
+    Canada, Australia, Ireland, New Zealand, Jamaica, South Africa
+    - Any Arabic-speaking country: Egypt, Lebanon, United Arab
+    Emirates, Morocco, Algeria, Syria, Tunisia, Saudi Arabia, Iraq
+    - China, Taiwan, Hong Kong, Singapore, Malaysia
+    - Austria, Switzerland, Belgium, Portugal, India
+
+    british songs -> AND artist.nationality = 'United Kingdom'
+
+    Regional languages use language ONLY, no nationality branch:
+    Catalan, Basque, Galician, Breton, Occitan, Corsican, Sardinian,
+    Neapolitan, Sicilian, Welsh, Scottish Gaelic
+    ->  AND album.languages && array['Catalan']
+
+    'Latin' is a liturgical language, not Latin American music.
+    Never map "latin music" to array['Latin'].
+    Never invent a language from a nationality: "Canadian",
+    "Australian", "Austrian", "Mexican", "Brazilian", "Belgian",
+    "Swiss" are not languages.
     """,
 
     # --- Release type ---

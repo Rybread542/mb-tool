@@ -132,7 +132,7 @@
             "title": "Settings panel",
             "customize": "Customize your chat settings here"
         },
-        "watermark": "Spotify links are fuzzy and may be wildly incorrect, try manually searching if necessary"
+        "watermark": "Spotify links are fuzzy and may be wildly incorrect. Try manually searching if necessary."
     },
     "threadHistory": {
         "sidebar": {

@@ -45,6 +45,8 @@ Three main tables, plus relevant filter columns:
 
     - `album.release_type`: every album has a type. The basic type is `Album`, or just a standard studio album. Other important types include `Live`, `Compilation`, `EP`, `Remix`, `Demo`. Release type is stored in an array, so a single album can have multiple, for example `['Album', 'Live']`.
 
+    - `album.languages`: kind of an odd one. An array of languages associated with every unique release of an album. Technically, this represents the language that the album title and track titles are written in and/or full versions of an album in a different language. This overlap is enough to roughly determine the language the album, or a version of the album, is performed in.
+
     - `album.duration`: same idea as with tracks, but calculated and given a dedicated column for simplicity.
 
     - `album.title_search`: normalized title, same as with tracks.
@@ -216,7 +218,7 @@ Back to tags again. As discussed, tags lean objective. Genre, sub genre. There a
 ## Future updates
 A brief list of things I either have planned or would like to figure out how to implement, roughly in order of priority:
 
-- **Track language**: Very doable and rather simple since MB has this natively. Most likely the next major feature.
+- ~~**Song/album language**: Very doable and rather simple since MB has this natively. Most likely the next major feature.~~ Live!
 
 - **More external links**: Right now this app has a Spotify bias. A link to YouTube Music for starters, and maybe other places like Discogs or RYM.
 

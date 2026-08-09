@@ -81,6 +81,15 @@ You can modify your searches in a few specific ways outlined below:
     <br/>
     <br/>
 
+- 🗣️**Language:** *new!* Vocal language of the album or track (if any). 
+
+    *`French pop rock songs.`*
+
+    *`Classical albums sung in Portuguese.`*
+
+    *`Swedish language metal albums.`*
+    <br/>
+
 - 🌎**Artist nationality:** Country of origin of the artist.
 
     *`Korean hip hop artists.`*
@@ -91,6 +100,8 @@ You can modify your searches in a few specific ways outlined below:
 - 🕒**Song/album duration:** Self explanatory, but can make for fun searches:
 
     *`trance tracks at least 10 minutes long.`*
+
+    *`pop albums shorter than 30 minutes.`*
 
     *`rock artists with songs over 7 minutes on average.`*
     <br/>

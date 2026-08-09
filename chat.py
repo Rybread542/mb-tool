@@ -442,7 +442,8 @@ async def handle_message(message: cl.Message):
             if sql == "REFUSE":
                 step.output = "Query refused"
                 await cl.Message(
-                    content="Your message was refused. This chat only takes requests for music."
+                    content="The bot rejected your prompt. This can happen if irrelevant or unfamiliar language is used; " \
+                    "check the readme in the top right for guidelines on how to word prompts."
                 ).send()
                 return
         except Exception as e:
@@ -463,8 +464,7 @@ async def handle_message(message: cl.Message):
 @cl.action_callback(RERUN_ACTION)
 async def on_rerun(action: cl.Action):
     """
-    Re-execute a stored query verbatim. No model call, no new user message.
-    The previous output stays in the transcript; new cards are appended below.
+    Re-execute a stored query verbatim.
     """
     qid = (action.payload or {}).get("qid")
     entry = get_sql(qid)
