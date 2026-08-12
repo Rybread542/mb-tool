@@ -17,7 +17,10 @@ import pandas as pd
 import chainlit as cl
 from vanna_setup import get_vn
 from spotify import spotify_helper as spotify
- 
+
+from log import init_logging, format_table, session_header, log_query
+
+log = init_logging()
 vn = get_vn()
  
 MAX_DISPLAY_ROWS = 25
@@ -421,8 +424,12 @@ async def execute_sql(sql, step_name):
         except Exception as e:
             step.output = f"Error: {e}"
             await cl.Message(content=f"Query failed: `{e}`").send()
+            log.error("Query execution failed", exc_info=True)
             return None, False
         step.output = f"Found {len(df)} result(s)."
+        log.info(f"RESULTS: ({0 if df is None else len(df)} rows):\n"
+             f"{format_table(df, max_rows=MAX_DISPLAY_ROWS)}\n")  
+        
         return df, True
  
  
@@ -430,17 +437,24 @@ async def execute_sql(sql, step_name):
 # Chainlit handlers
 # ===========================================================================
  
+@cl.on_chat_start
+async def on_chat_start():
+    session_header()
+
 @cl.on_message
 async def handle_message(message: cl.Message):
     question = message.content.strip()
     if not question:
         return
- 
+
+    log_query(question)
+    
     async with cl.Step(name="Thinking about the request", type="llm") as step:
         try:
             sql = await cl.make_async(vn.generate_sql)(question)
             if sql == "REFUSE":
                 step.output = "Query refused"
+                log.info("REFUSED")
                 await cl.Message(
                     content="The bot rejected your prompt. This can happen if irrelevant or unfamiliar language is used; " \
                     "check the readme in the top right for guidelines on how to word prompts."
@@ -448,9 +462,12 @@ async def handle_message(message: cl.Message):
                 return
         except Exception as e:
             step.output = f"Error: {e}"
+            log.error("SQL generation failed", exc_info=True)
             await cl.Message(content=f"SQL generation failed: `{e}`").send()
             return
         step.output = f"```sql\n{sql}\n```"
+
+        log.info(f"Model SQL:\n{sql}")
  
     qid = register_sql(question, sql)
  
@@ -466,6 +483,7 @@ async def on_rerun(action: cl.Action):
     """
     Re-execute a stored query verbatim.
     """
+    log.info('----------------REROLLED QUERY...')
     qid = (action.payload or {}).get("qid")
     entry = get_sql(qid)
     if not entry:
@@ -477,5 +495,5 @@ async def on_rerun(action: cl.Action):
     df, ok = await execute_sql(entry["sql"], "Rerolling...")
     if not ok:
         return
- 
+    
     await render_results(df, qid, header="Done.")
