@@ -72,6 +72,16 @@ docs_arr = [
     - album to its canonical artist: album -> artist_credit -> artist
     """,
 
+    # --- Query families ---
+    """
+    The noun after any genre words determines the query family. Either artist, album, or track:
+    'artists', 'bands', 'groups', 'DJs', 'singers', 'musicians' -> SELECT FROM artist. 
+    NEVER FROM album UNLESS a decade/time period is present.
+    'music', 'albums', 'records', 'LPs', 'EPs', 'compilations', 'remixes', 'singles', 'mixes' -> SELECT FROM album.
+    'songs', 'tracks' -> SELECT FROM track.
+    The genre and named artist NEVER change this rule.
+    """,
+
     # --- Genre substrings ---
     """
     When searching for albums, artists, and tracks with a genre given by the user,
@@ -237,14 +247,23 @@ docs_arr = [
     # --- Artist similarity search ---
     """
     When querying for similar artists, for example:
-    'ten rock albums like john lennon', 'tracks by artists like Prince', 'artists similar to Sufjan Stevens'
+    'artists like X', 'artists similar to X', 'artists for fans of X' -> artists similar to an artist
+    'albums similar to X', 'albums like X' -> albums similar to an artist
+    'songs similar to X', 'songs like X' -> songs similar to an artist
+
     The similar_artist table must always be joined to artist: 
     JOIN similar_artist sa ON artist.gid = sa.similar_artist_mbid.
     Additionally, the following small subquery model is *required on all similarity queries* in this exact convention:
-    WHERE sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = '<artist>' ORDER BY artist.id ASC LIMIT 1)
+    WHERE sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
     This join and WHERE statement allow results to be filtered only to artists that are neighbors of the user's given artist, allowing for rough similarity
     discovery searches.
-    """,
+
+    X stands for the user-given artist to search by. Always normalize the given artist string to remove punctuation, accents and spaces, for example
+    'The Smiths' -> WHERE sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'thesmiths' ORDER BY artist.id ASC LIMIT 1)
+    'Miles Davis' -> WHERE sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'milesdavis' ORDER BY artist.id ASC LIMIT 1)
+    'Black Country, New Road' -> WHERE sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'blackcountrynewroad' ORDER BY artist.id ASC LIMIT 1)
+    Never output the literal placeholder.
+    """, 
 
     # --- Name search ---
     """

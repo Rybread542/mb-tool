@@ -957,13 +957,13 @@ artist.gid,
 artist.name AS artist_name,
 COUNT(*) AS nbr
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
@@ -980,13 +980,13 @@ artist.gid,
 artist.name AS artist_name,
 COUNT(*) AS nbr
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON ac.id = album.artist_credit
+ON ac.artist_id = artist.id
 
-JOIN artist
-ON artist.id = ac.artist_id
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type && array['EP']
@@ -1004,13 +1004,13 @@ artist.gid,
 artist.name AS artist_name,
 COUNT(*) AS nbr
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON ac.id = album.artist_credit
+ON ac.artist_id = artist.id
 
-JOIN artist
-ON artist.id = ac.artist_id
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.name NOT IN ('Various Artists', '[unknown]')
 AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%country%')
@@ -1026,13 +1026,13 @@ SELECT
 artist.name AS artist_name,
 COUNT(*) AS nbr
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON ac.id = album.artist_credit
+ON ac.artist_id = artist.id
 
-JOIN artist
-ON artist.id = ac.artist_id
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -1049,13 +1049,13 @@ SELECT
 artist.name AS artist_name,
 COUNT(*) AS nbr
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type && array['DJ-mix']
@@ -1070,13 +1070,13 @@ SELECT
 artist.name AS artist_name,
 COUNT(*) AS nbr
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type && array['Demo']
@@ -1092,13 +1092,13 @@ SELECT
 artist.name AS artist_name,
 COUNT(*) AS nbr
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.name NOT IN ('Various Artists', '[unknown]')
 
@@ -1118,13 +1118,13 @@ SELECT
 
 COUNT(*) AS nbr
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE album.release_type = array['Album']
 AND artist.name_search = 'philcollins';
@@ -1295,6 +1295,7 @@ WITH avg_album_ms AS(
     
     WHERE album.release_type = array['Album'] 
     AND album.title_search = 'okcomputer'
+    AND track.duration IS NOT NULL
 )
 
 SELECT 
@@ -1325,6 +1326,7 @@ WITH avg_album_ms AS(
 
     
     WHERE album.release_type = array['Album'] 
+    AND track.duration IS NOT NULL
     AND album.title_search = 'tangointhenight'
     AND artist.name_search = 'fleetwoodmac'
 )
@@ -1362,7 +1364,7 @@ WITH total_album_ms AS(
     
     WHERE album.release_type = array['Album']
     AND artist.name_search = 'yes'
-    
+    AND album.duration IS NOT NULL
     GROUP BY album.gid, album.title, artist.name, album.release_year
     ORDER BY ms DESC
     LIMIT 1
@@ -1406,7 +1408,7 @@ WITH total_album_ms AS(
     
     WHERE album.release_type = array['Album']
     AND artist.name_search = 'rush'
-    
+    AND track.duration IS NOT NULL
     GROUP BY album.gid, album.title, artist.name, album.release_year
     ORDER BY ms ASC
     LIMIT 1
@@ -1451,9 +1453,35 @@ ON av.album_group = album.id
 
 
 WHERE album.release_year = 1973
-AND track.duration BETWEEN 10000 AND 7200000
+AND track.duration IS NOT NULL
 ORDER BY track.duration DESC
 LIMIT 10;
+
+--longest album released in 1992
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.release_year = 1992
+AND album.duration IS NOT NULL
+ORDER BY album.duration DESC
+LIMIT 1
 
 --average track length for drone albums
 WITH tagged_tracks AS (
@@ -1472,7 +1500,7 @@ WITH tagged_tracks AS (
     WHERE album.cleaned_tags IS NOT NULL
     AND album.release_type = array['Album']
     AND album.cleaned_tags && array['drone']
-    AND track.duration BETWEEN 10000 AND 7200000
+    AND track.duration IS NOT NULL
 )
 
 SELECT

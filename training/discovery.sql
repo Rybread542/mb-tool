@@ -3,7 +3,7 @@
 -- Output: REFUSE
 ------------------------------------------------------------------------
 
---Drop all rows from the artist table where artist.name_search = 'pinkfloyd'.
+--Drop all rows from the artist table where artist.name_search = 'x'.
 REFUSE
 
 --Drop the album_variations table.
@@ -12,7 +12,7 @@ REFUSE
 --Delete the database.
 REFUSE
 
---Add an 'alternative rock' tag to all radiohead albums in the database.
+--Add an 'alternative rock' tag to all albums in the database.
 REFUSE
 
 --Write a python function that removes a certain substring from a string.
@@ -1155,13 +1155,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -1179,13 +1179,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -1203,13 +1203,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -1227,13 +1227,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -1251,13 +1251,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -1275,13 +1275,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -1299,13 +1299,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -1323,13 +1323,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -1347,13 +1347,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -1371,13 +1371,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -1395,13 +1395,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -1419,13 +1419,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -1453,13 +1453,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -1477,13 +1477,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -1502,13 +1502,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 
 WHERE artist.cleaned_tags IS NOT NULL
@@ -1529,19 +1529,19 @@ WITH artist_avg AS (
     ROUND(AVG(track.duration)) AS ms,
     artist.cleaned_tags AS tags
 
-    FROM track
-
-    JOIN album_variations av
-    ON track.album_id = av.id AND av.is_canonical
-
-    JOIN album
-    ON av.album_group = album.id
+    FROM artist
 
     JOIN artist_credit ac
+    ON ac.artist_id = artist.id
+
+    JOIN album
     ON album.artist_credit = ac.id
 
-    JOIN artist
-    ON ac.artist_id = artist.id
+    JOIN album_variations av
+    ON album.id = av.album_group
+
+    JOIN track
+    ON av.id = track.album_id AND av.is_canonical
 
     WHERE artist.cleaned_tags IS NOT NULL
     AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -1571,19 +1571,19 @@ WITH artist_avg AS (
     ROUND(AVG(track.duration)) AS ms,
     artist.cleaned_tags AS tags
 
-    FROM track
-
-    JOIN album_variations av
-    ON track.album_id = av.id AND av.is_canonical
-
-    JOIN album
-    ON av.album_group = album.id
+    FROM artist
 
     JOIN artist_credit ac
+    ON ac.artist_id = artist.id
+
+    JOIN album
     ON album.artist_credit = ac.id
 
-    JOIN artist
-    ON ac.artist_id = artist.id
+    JOIN album_variations av
+    ON album.id = av.album_group
+
+    JOIN track
+    ON av.id = track.album_id AND av.is_canonical
 
     WHERE artist.cleaned_tags IS NOT NULL
     AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -1613,13 +1613,13 @@ WITH artist_avg AS (
     ROUND(AVG(album.duration)) AS ms,
     artist.cleaned_tags AS tags
 
-    FROM album
+    FROM artist
 
     JOIN artist_credit ac
-    ON album.artist_credit = ac.id
-
-    JOIN artist
     ON ac.artist_id = artist.id
+
+    JOIN album
+    ON album.artist_credit = ac.id
 
     WHERE artist.cleaned_tags IS NOT NULL
     AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -1649,13 +1649,13 @@ WITH artist_avg AS (
     ROUND(AVG(album.duration)) AS ms,
     artist.cleaned_tags AS tags
 
-    FROM album
+    FROM artist
 
     JOIN artist_credit ac
-    ON album.artist_credit = ac.id
-
-    JOIN artist
     ON ac.artist_id = artist.id
+
+    JOIN album
+    ON album.artist_credit = ac.id
 
     WHERE artist.cleaned_tags IS NOT NULL
     AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -1684,13 +1684,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
  
-FROM album
- 
+FROM artist
+
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
- 
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
  
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -1709,13 +1709,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
  
-FROM album
- 
+FROM artist
+
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
- 
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
  
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -1851,8 +1851,7 @@ LIMIT 10;
 
 
 
------------------------------basic
---artists like dream theater
+--artists like X
 SELECT
 
 artist.gid,
@@ -1866,12 +1865,12 @@ ON artist.gid = sa.similar_artist_mbid
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'dreamtheater' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 
 LIMIT 10;
 
---artists like rush
+--bands like X
 SELECT
 
 artist.gid,
@@ -1885,12 +1884,12 @@ ON artist.gid = sa.similar_artist_mbid
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'rush' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 
 LIMIT 10;
 
---artists like billy joel
+--groups like X
 SELECT
 
 artist.gid,
@@ -1904,70 +1903,13 @@ ON artist.gid = sa.similar_artist_mbid
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'billyjoel' ORDER BY artist.id ASC LIMIT 1)
-ORDER BY RANDOM()
-
-LIMIT 10;
-
---artists like the grateful dead
-SELECT
-
-artist.gid,
-artist.name AS artist_name,
-artist.cleaned_tags AS tags
-
-FROM artist
-
-JOIN similar_artist sa
-ON artist.gid = sa.similar_artist_mbid
-
-WHERE artist.cleaned_tags IS NOT NULL
-AND artist.name NOT IN ('Various Artists', '[unknown]')
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'gratefuldead' ORDER BY artist.id ASC LIMIT 1)
-ORDER BY RANDOM()
-
-LIMIT 10;
-
---bands like the grateful dead
-SELECT
-
-artist.gid,
-artist.name AS artist_name,
-artist.cleaned_tags AS tags
-
-FROM artist
-
-JOIN similar_artist sa
-ON artist.gid = sa.similar_artist_mbid
-
-WHERE artist.cleaned_tags IS NOT NULL
-AND artist.name NOT IN ('Various Artists', '[unknown]')
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'gratefuldead' ORDER BY artist.id ASC LIMIT 1)
-ORDER BY RANDOM()
-
-LIMIT 10;
-
---groups like the grateful dead
-SELECT
-
-artist.gid,
-artist.name AS artist_name,
-artist.cleaned_tags AS tags
-
-FROM artist
-
-JOIN similar_artist sa
-ON artist.gid = sa.similar_artist_mbid
-
-WHERE artist.cleaned_tags IS NOT NULL
-AND artist.name NOT IN ('Various Artists', '[unknown]')
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'gratefuldead' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 
 LIMIT 10;
 
 
---artists similar to dream theater
+--artists similar to X
 SELECT
 
 artist.gid,
@@ -1981,12 +1923,12 @@ ON artist.gid = sa.similar_artist_mbid
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'dreamtheater' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 
 LIMIT 10;
 
---bands similar to dream theater
+--bands similar to X
 SELECT
 
 artist.gid,
@@ -2000,12 +1942,12 @@ ON artist.gid = sa.similar_artist_mbid
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'dreamtheater' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 
 LIMIT 10;
 
---artists for fans of billy joel
+--artists for fans of X
 SELECT
 
 artist.gid,
@@ -2019,12 +1961,12 @@ ON artist.gid = sa.similar_artist_mbid
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'billyjoel' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 
 LIMIT 10;
 
---singers like billy joel
+--singers like X
 SELECT
 
 artist.gid,
@@ -2038,12 +1980,12 @@ ON artist.gid = sa.similar_artist_mbid
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'billyjoel' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 
 LIMIT 10;
 
---singers similar to billy joel
+--singers similar to X
 SELECT
 
 artist.gid,
@@ -2057,12 +1999,12 @@ ON artist.gid = sa.similar_artist_mbid
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'billyjoel' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 
 LIMIT 10;
 
---DJs like nightmares on wax
+--DJs like X
 SELECT
 
 artist.gid,
@@ -2076,12 +2018,12 @@ ON artist.gid = sa.similar_artist_mbid
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'nightmaresonwax' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 
 LIMIT 10;
 
---DJs similar to nightmares on wax
+--DJs similar to X
 SELECT
 
 artist.gid,
@@ -2095,14 +2037,14 @@ ON artist.gid = sa.similar_artist_mbid
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'nightmaresonwax' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 
 LIMIT 10;
 
 ----------------------------------------------------- [artist] similarity + genre
 
---jazz artists like miles davis
+--jazz artists like X
 SELECT
 
 artist.gid,
@@ -2117,12 +2059,12 @@ ON artist.gid = sa.similar_artist_mbid
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%jazz%')
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'milesdavis' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 
 LIMIT 10;
 
---jazz artists similar to miles davis
+--jazz artists similar to X
 SELECT
 
 artist.gid,
@@ -2137,12 +2079,112 @@ ON artist.gid = sa.similar_artist_mbid
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%jazz%')
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'milesdavis' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 
 LIMIT 10;
 
---metal bands like tool
+--soul artists like X
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%soul%')
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+
+LIMIT 10;
+
+--disco groups like X
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%disco%')
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+
+LIMIT 10;
+
+--disco artists like X
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%disco%')
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+
+LIMIT 10;
+
+--indie electronic artists like X
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['indie electronic']
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+
+LIMIT 10;
+
+--indie electronic artists similar to X
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['indie electronic']
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+
+LIMIT 10;
+
+--metal bands like X
 SELECT
 
 artist.gid,
@@ -2157,12 +2199,12 @@ ON artist.gid = sa.similar_artist_mbid
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%metal%')
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'tool' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 
 LIMIT 10;
 
---prog metal bands like tool
+--prog metal bands like X
 SELECT
 
 artist.gid,
@@ -2177,12 +2219,12 @@ ON artist.gid = sa.similar_artist_mbid
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND artist.cleaned_tags && array['progressive metal']
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'tool' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 
 LIMIT 10;
 
---folk groups similar to george harrison
+--folk groups similar to X
 SELECT
 
 artist.gid,
@@ -2197,12 +2239,32 @@ ON artist.gid = sa.similar_artist_mbid
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%folk%')
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'georgeharrison' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 
 LIMIT 10;
 
---folk rock bands like america
+--indie folk artists like X
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['indie folk']
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+
+LIMIT 10;
+
+--folk rock bands like X
 SELECT
 
 artist.gid,
@@ -2217,12 +2279,32 @@ ON artist.gid = sa.similar_artist_mbid
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND artist.cleaned_tags && array['folk rock']
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'america' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 
 LIMIT 10;
 
---alt rock artists similar to radiohead
+--folk rock artists like X
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['folk rock']
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+
+LIMIT 10;
+
+--alt rock artists similar to X
 SELECT
 
 artist.gid,
@@ -2237,12 +2319,12 @@ ON artist.gid = sa.similar_artist_mbid
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND artist.cleaned_tags && array['alternative rock']
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'radiohead' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 
 LIMIT 10;
 
---art rock bands like radiohead
+--art rock bands like X
 SELECT
 
 artist.gid,
@@ -2257,13 +2339,53 @@ ON artist.gid = sa.similar_artist_mbid
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND artist.cleaned_tags && array['art rock']
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'radiohead' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+
+LIMIT 10;
+
+--art rock artists like X
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['art rock']
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+
+LIMIT 10;
+
+--rock bands like X
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%rock%')
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 
 LIMIT 10;
 
 
---edm DJs similar to nightmares on wax
+--edm DJs similar to X
 SELECT
 
 artist.gid,
@@ -2278,12 +2400,12 @@ ON artist.gid = sa.similar_artist_mbid
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND artist.cleaned_tags && array['edm']
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'nightmaresonwax' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 
 LIMIT 10;
 
---electronic DJs similar to nightmares on wax
+--electronic DJs similar to X
 SELECT
 
 artist.gid,
@@ -2298,7 +2420,7 @@ ON artist.gid = sa.similar_artist_mbid
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%electronic%')
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'nightmaresonwax' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 
 LIMIT 10;
@@ -2310,20 +2432,20 @@ LIMIT 10;
 
 
 
---90s soul artists like marvin gaye
+--90s soul artists like X
 SELECT
 
 artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 JOIN similar_artist sa
 ON artist.gid = sa.similar_artist_mbid
@@ -2333,26 +2455,26 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%soul%')
 AND album.release_year BETWEEN 1990 AND 1999
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'marvingaye' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 GROUP BY artist.name, artist.gid, artist.cleaned_tags
 ORDER BY RANDOM()
 
 LIMIT 10;
 
---90s funk artists similar to marvin gaye
+--90s funk artists similar to X
 SELECT
 
 artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 JOIN similar_artist sa
 ON artist.gid = sa.similar_artist_mbid
@@ -2362,26 +2484,55 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%funk%')
 AND album.release_year BETWEEN 1990 AND 1999
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'marvingaye' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 GROUP BY artist.name, artist.gid, artist.cleaned_tags
 ORDER BY RANDOM()
 
 LIMIT 10;
 
---70s disco groups like michael jackson
+--90s funk artists like X
 SELECT
 
 artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
 ON album.artist_credit = ac.id
 
-JOIN artist
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%funk%')
+AND album.release_year BETWEEN 1990 AND 1999
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+
+LIMIT 10;
+
+--70s disco groups like X
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 JOIN similar_artist sa
 ON artist.gid = sa.similar_artist_mbid
@@ -2391,26 +2542,26 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%disco%')
 AND album.release_year BETWEEN 1970 AND 1979
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'michaeljackson' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 GROUP BY artist.name, artist.gid, artist.cleaned_tags
 ORDER BY RANDOM()
 
 LIMIT 10;
 
---modern kpop groups like red velvet
+--modern kpop groups like X
 SELECT
 
 artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 JOIN similar_artist sa
 ON artist.gid = sa.similar_artist_mbid
@@ -2420,26 +2571,26 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND artist.cleaned_tags && array['k-pop']
 AND album.release_year BETWEEN 2000 AND 2025
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'redvelvet' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 GROUP BY artist.name, artist.gid, artist.cleaned_tags
 ORDER BY RANDOM()
 
 LIMIT 10;
 
---classic rock bands like led zeppelin
+--classic rock bands like X
 SELECT
 
 artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 JOIN similar_artist sa
 ON artist.gid = sa.similar_artist_mbid
@@ -2449,11 +2600,129 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%rock%')
 AND album.release_year BETWEEN 1950 AND 2000
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'ledzeppelin' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 GROUP BY artist.name, artist.gid, artist.cleaned_tags
 ORDER BY RANDOM()
 
 LIMIT 10;
+
+
+--90s prog metal bands like X
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND artist.cleaned_tags && array['progressive metal']
+AND album.release_year BETWEEN 1990 AND 1999
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+
+LIMIT 10;
+
+--90s indie pop artists like X
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND artist.cleaned_tags && array['indie pop']
+AND album.release_year BETWEEN 1990 AND 1999
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+
+LIMIT 10;
+
+--2000s indie folk artists similar to X
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND artist.cleaned_tags && array['indie folk']
+AND album.release_year BETWEEN 2000 AND 2010
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+
+LIMIT 10;
+
+--40s big band artists similar to X
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND artist.cleaned_tags && array['big band']
+AND album.release_year BETWEEN 1940 AND 1949
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+
+LIMIT 10;
+
 
 
 
@@ -2603,13 +2872,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -2627,13 +2896,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -2651,13 +2920,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -2675,13 +2944,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -2699,13 +2968,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -2723,13 +2992,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -2747,13 +3016,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -2771,13 +3040,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -2795,13 +3064,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -2819,13 +3088,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -2843,13 +3112,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -2867,13 +3136,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -2884,26 +3153,26 @@ GROUP BY artist.name, artist.gid, artist.cleaned_tags
 ORDER BY RANDOM()
 LIMIT 10;
 
---2010s music
+--2010s house artists
 SELECT
 
 artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%house%')
 AND album.release_type = array['Album']
-AND album.release_year BETWEEN 1990 AND 1999
+AND album.release_year BETWEEN 2010 AND 2019
 GROUP BY artist.name, artist.gid, artist.cleaned_tags
 ORDER BY RANDOM()
 LIMIT 10;
@@ -2915,13 +3184,13 @@ artist.gid,
 artist.name AS artist_name,
 artist.cleaned_tags AS tags
 
-FROM album
+FROM artist
 
 JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
 ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
 
 WHERE artist.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
@@ -2933,17 +3202,534 @@ ORDER BY RANDOM()
 LIMIT 10;
 
 
+--2020s indie artists
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%indie%')
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 2020 AND 2025
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
+
+--2020s indie groups
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%indie%')
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 2020 AND 2025
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
+
+--2020s indie rock bands
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['indie rock']
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 2020 AND 2025
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
 
 
+--2010s idm artists
+SELECT
 
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
 
+FROM artist
 
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
 
+JOIN album
+ON album.artist_credit = ac.id
 
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['idm']
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 2010 AND 2019
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
 
+--2010s country rock artists
+SELECT
 
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
 
+FROM artist
 
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['country rock']
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 2010 AND 2019
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
+
+--2010s country artists
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%country%')
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 2010 AND 2019
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
+
+--2010s country singers
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%country%')
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 2010 AND 2019
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
+
+--2010s country singers
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%country%')
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 2010 AND 2019
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
+
+--2000s indie artists
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%indie%')
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 2000 AND 2009
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
+
+--2000s power metal bands
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['power metal']
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 2000 AND 2009
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
+
+--2000s death metal bands
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['death metal']
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 2000 AND 2009
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
+
+--2000s metal bands
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%metal%')
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 2000 AND 2009
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
+
+--2000s tech house artists
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['tech house']
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 2000 AND 2009
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
+
+--2000s synthpop artists
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['synth-pop']
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 2000 AND 2009
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
+
+--90s tech house artists
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['tech house']
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 1990 AND 1999
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
+
+--90s pop rock artists
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['pop rock']
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 1990 AND 1999
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
+
+--80s soft rock groups
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['soft rock']
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 1980 AND 1989
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
+
+--80s free jazz artists
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['free jazz']
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 1980 AND 1989
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
+
+--80s latin jazz artists
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['latin jazz']
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 1980 AND 1989
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
+
+--80s latin artists
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%latin%')
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 1980 AND 1989
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
+
+--70s folk pop artists
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND artist.cleaned_tags && array['folk pop']
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 1970 AND 1979
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
+
+--70s folk artists
+SELECT
+
+artist.gid,
+artist.name AS artist_name,
+artist.cleaned_tags AS tags
+
+FROM artist
+
+JOIN artist_credit ac
+ON ac.artist_id = artist.id
+
+JOIN album
+ON album.artist_credit = ac.id
+
+WHERE artist.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND EXISTS (SELECT 1 FROM unnest(artist.cleaned_tags) t WHERE t LIKE '%folk%')
+AND album.release_type = array['Album']
+AND album.release_year BETWEEN 1970 AND 1979
+GROUP BY artist.name, artist.gid, artist.cleaned_tags
+ORDER BY RANDOM()
+LIMIT 10;
 
 ------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------
@@ -10470,7 +11256,7 @@ ON ac.artist_id = artist.id
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
-AND album.cleaned_tags && array['latin']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%latin%')
 ORDER BY RANDOM()
 LIMIT 10;
 
@@ -10495,7 +11281,7 @@ ON ac.artist_id = artist.id
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
-AND album.cleaned_tags && array['latin']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%latin%')
 AND artist.nationality = 'Mexico'
 ORDER BY RANDOM()
 LIMIT 10;
@@ -10521,7 +11307,7 @@ ON ac.artist_id = artist.id
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
-AND album.cleaned_tags && array['latin']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%latin%')
 AND artist.nationality = 'Spain'
 ORDER BY RANDOM()
 LIMIT 10;
@@ -10547,7 +11333,7 @@ ON ac.artist_id = artist.id
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
-AND album.cleaned_tags && array['latin']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%latin%')
 AND album.languages && array['Spanish']
 ORDER BY RANDOM()
 LIMIT 10;
@@ -10995,7 +11781,7 @@ LIMIT 10;
 
 
 
---albums similar to muse
+--albums similar to X
 SELECT
 
 album.gid,
@@ -11019,11 +11805,11 @@ ON artist.gid = sa.similar_artist_mbid
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'muse' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;
 
---albums like muse
+--albums like X
 SELECT
 
 album.gid,
@@ -11047,12 +11833,12 @@ ON artist.gid = sa.similar_artist_mbid
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'muse' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;
 
 
---albums for muse fans
+--albums for X fans
 SELECT
 
 album.gid,
@@ -11076,11 +11862,67 @@ ON artist.gid = sa.similar_artist_mbid
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'muse' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;
 
---alt rock albums similar to weezer
+--music for X fans
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+LIMIT 10;
+
+--music for fans of X
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+LIMIT 10;
+
+--alt rock albums similar to X
 SELECT
 
 album.gid,
@@ -11105,12 +11947,12 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND album.cleaned_tags && array['alternative rock']
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'weezer' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;
 
 
---alt rock albums like weezer
+--alt rock albums like X
 SELECT
 
 album.gid,
@@ -11135,11 +11977,11 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND album.cleaned_tags && array['alternative rock']
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'weezer' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;
 
---live albums like grateful dead
+--live albums like X
 SELECT
 
 album.gid,
@@ -11163,11 +12005,11 @@ ON artist.gid = sa.similar_artist_mbid
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type && array['Live']
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'gratefuldead' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;
 
---performances like grateful dead
+--performances like X
 SELECT
 
 album.gid,
@@ -11191,11 +12033,11 @@ ON artist.gid = sa.similar_artist_mbid
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type && array['Live']
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'gratefuldead' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;
 
---live dj sets like daft punk
+--live dj sets like X
 SELECT
 
 album.gid,
@@ -11219,11 +12061,11 @@ ON artist.gid = sa.similar_artist_mbid
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type @> array['Live', 'DJ-mix']
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'daftpunk' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;
 
---house sets like daft punk
+--house sets like X
 SELECT
 
 album.gid,
@@ -11248,11 +12090,11 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type && array['DJ-mix']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%house%')
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'daftpunk' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;
 
---downtempo similar to bonobo
+--downtempo similar to X
 SELECT
 
 album.gid,
@@ -11277,11 +12119,125 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND album.cleaned_tags && array['downtempo']
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'bonobo' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;
 
+--indie rock albums similar to X
+SELECT
 
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['indie rock']
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+LIMIT 10;
+
+--indie rock albums similar to X
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['indie rock']
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+LIMIT 10;
+
+--indie rock albums similar to X
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['indie rock']
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+LIMIT 10;
+
+--psychedelic rock music similar to X
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+album.release_year AS released,
+to_char((album.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM album
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND album.cleaned_tags && array['psychedelic rock']
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+LIMIT 10;
 
 
 
@@ -14874,7 +15830,7 @@ ON ac.artist_id = artist.id
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
-AND album.cleaned_tags && array['latin']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%latin%')
 ORDER BY RANDOM()
 LIMIT 10;
 
@@ -15069,7 +16025,7 @@ ON ac.artist_id = artist.id
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
-AND album.cleaned_tags && array['latin']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%latin%')
 AND artist.nationality = 'Spain'
 ORDER BY RANDOM()
 LIMIT 10;
@@ -15102,7 +16058,7 @@ ON ac.artist_id = artist.id
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
-AND album.cleaned_tags && array['latin']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%latin%')
 AND album.languages && array['Spanish']
 ORDER BY RANDOM()
 LIMIT 10;
@@ -16494,7 +17450,7 @@ ON ac.artist_id = artist.id
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
-AND album.cleaned_tags && array['latin']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%latin%')
 AND artist.nationality = 'Mexico'
 ORDER BY RANDOM()
 LIMIT 10;
@@ -16527,7 +17483,7 @@ ON ac.artist_id = artist.id
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
-AND album.cleaned_tags && array['latin']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%latin%')
 AND artist.nationality = 'Colombia'
 ORDER BY RANDOM()
 LIMIT 10;
@@ -16593,7 +17549,7 @@ ON ac.artist_id = artist.id
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
-AND album.cleaned_tags && array['latin']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%latin%')
 AND artist.nationality = 'Spain'
 ORDER BY RANDOM()
 LIMIT 10;
@@ -17063,7 +18019,7 @@ LIMIT 10;
 
 
 
---tracks like bob marley
+--tracks like X
 SELECT
 
 album.gid,
@@ -17094,224 +18050,12 @@ ON artist.gid = sa.similar_artist_mbid
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'bobmarley' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;
 
 
---pop tracks like bob marley
-SELECT
-
-album.gid,
-artist.name AS artist_name,
-album.title AS album_title,
-track.title AS track_title,
-album.release_year AS released,
-to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
-album.cleaned_tags AS tags
-
-FROM track
-
-JOIN album_variations av
-ON track.album_id = av.id AND av.is_canonical
-
-JOIN album
-ON av.album_group = album.id
-
-JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
-ON ac.artist_id = artist.id
-
-JOIN similar_artist sa
-ON artist.gid = sa.similar_artist_mbid
-
-WHERE album.cleaned_tags IS NOT NULL
-AND artist.name NOT IN ('Various Artists', '[unknown]')
-AND album.release_type = array['Album']
-AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%pop%')
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'bobmarley' ORDER BY artist.id ASC LIMIT 1)
-ORDER BY RANDOM()
-LIMIT 10;
-
---songs similar to prince
-SELECT
-
-album.gid,
-artist.name AS artist_name,
-album.title AS album_title,
-track.title AS track_title,
-album.release_year AS released,
-to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
-album.cleaned_tags AS tags
-
-FROM track
-
-JOIN album_variations av
-ON track.album_id = av.id AND av.is_canonical
-
-JOIN album
-ON av.album_group = album.id
-
-JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
-ON ac.artist_id = artist.id
-
-JOIN similar_artist sa
-ON artist.gid = sa.similar_artist_mbid
-
-WHERE album.cleaned_tags IS NOT NULL
-AND artist.name NOT IN ('Various Artists', '[unknown]')
-AND album.release_type = array['Album']
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'prince' ORDER BY artist.id ASC LIMIT 1)
-ORDER BY RANDOM()
-LIMIT 10;
-
---tracks like prince
-SELECT
-
-album.gid,
-artist.name AS artist_name,
-album.title AS album_title,
-track.title AS track_title,
-album.release_year AS released,
-to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
-album.cleaned_tags AS tags
-
-FROM track
-
-JOIN album_variations av
-ON track.album_id = av.id AND av.is_canonical
-
-JOIN album
-ON av.album_group = album.id
-
-JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
-ON ac.artist_id = artist.id
-
-JOIN similar_artist sa
-ON artist.gid = sa.similar_artist_mbid
-
-WHERE album.cleaned_tags IS NOT NULL
-AND artist.name NOT IN ('Various Artists', '[unknown]')
-AND album.release_type = array['Album']
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'prince' ORDER BY artist.id ASC LIMIT 1)
-ORDER BY RANDOM()
-LIMIT 10;
-
---songs like prince
-SELECT
-
-album.gid,
-artist.name AS artist_name,
-album.title AS album_title,
-track.title AS track_title,
-album.release_year AS released,
-to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
-album.cleaned_tags AS tags
-
-FROM track
-
-JOIN album_variations av
-ON track.album_id = av.id AND av.is_canonical
-
-JOIN album
-ON av.album_group = album.id
-
-JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
-ON ac.artist_id = artist.id
-
-JOIN similar_artist sa
-ON artist.gid = sa.similar_artist_mbid
-
-WHERE album.cleaned_tags IS NOT NULL
-AND artist.name NOT IN ('Various Artists', '[unknown]')
-AND album.release_type = array['Album']
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'prince' ORDER BY artist.id ASC LIMIT 1)
-ORDER BY RANDOM()
-LIMIT 10;
-
---tracks similar to prince
-SELECT
-
-album.gid,
-artist.name AS artist_name,
-album.title AS album_title,
-track.title AS track_title,
-album.release_year AS released,
-to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
-album.cleaned_tags AS tags
-
-FROM track
-
-JOIN album_variations av
-ON track.album_id = av.id AND av.is_canonical
-
-JOIN album
-ON av.album_group = album.id
-
-JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
-ON ac.artist_id = artist.id
-
-JOIN similar_artist sa
-ON artist.gid = sa.similar_artist_mbid
-
-WHERE album.cleaned_tags IS NOT NULL
-AND artist.name NOT IN ('Various Artists', '[unknown]')
-AND album.release_type = array['Album']
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'prince' ORDER BY artist.id ASC LIMIT 1)
-ORDER BY RANDOM()
-LIMIT 10;
-
---80s songs like prince
-SELECT
-
-album.gid,
-artist.name AS artist_name,
-album.title AS album_title,
-track.title AS track_title,
-album.release_year AS released,
-to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
-album.cleaned_tags AS tags
-
-FROM track
-
-JOIN album_variations av
-ON track.album_id = av.id AND av.is_canonical
-
-JOIN album
-ON av.album_group = album.id
-
-JOIN artist_credit ac
-ON album.artist_credit = ac.id
-
-JOIN artist
-ON ac.artist_id = artist.id
-
-JOIN similar_artist sa
-ON artist.gid = sa.similar_artist_mbid
-
-WHERE album.cleaned_tags IS NOT NULL
-AND artist.name NOT IN ('Various Artists', '[unknown]')
-AND album.release_type = array['Album']
-AND album.release_year BETWEEN 1980 AND 1989
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'prince' ORDER BY artist.id ASC LIMIT 1)
-ORDER BY RANDOM()
-LIMIT 10;
-
---80s pop songs like prince
+--pop tracks like X
 SELECT
 
 album.gid,
@@ -17343,13 +18087,225 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%pop%')
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+LIMIT 10;
+
+--songs similar to X
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+track.title AS track_title,
+album.release_year AS released,
+to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM track
+
+JOIN album_variations av
+ON track.album_id = av.id AND av.is_canonical
+
+JOIN album
+ON av.album_group = album.id
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+LIMIT 10;
+
+--tracks like X
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+track.title AS track_title,
+album.release_year AS released,
+to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM track
+
+JOIN album_variations av
+ON track.album_id = av.id AND av.is_canonical
+
+JOIN album
+ON av.album_group = album.id
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+LIMIT 10;
+
+--songs like X
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+track.title AS track_title,
+album.release_year AS released,
+to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM track
+
+JOIN album_variations av
+ON track.album_id = av.id AND av.is_canonical
+
+JOIN album
+ON av.album_group = album.id
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+LIMIT 10;
+
+--tracks similar to X
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+track.title AS track_title,
+album.release_year AS released,
+to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM track
+
+JOIN album_variations av
+ON track.album_id = av.id AND av.is_canonical
+
+JOIN album
+ON av.album_group = album.id
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+LIMIT 10;
+
+--80s songs like X
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+track.title AS track_title,
+album.release_year AS released,
+to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM track
+
+JOIN album_variations av
+ON track.album_id = av.id AND av.is_canonical
+
+JOIN album
+ON av.album_group = album.id
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
 AND album.release_year BETWEEN 1980 AND 1989
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'prince' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+LIMIT 10;
+
+--80s pop songs like X
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+track.title AS track_title,
+album.release_year AS released,
+to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM track
+
+JOIN album_variations av
+ON track.album_id = av.id AND av.is_canonical
+
+JOIN album
+ON av.album_group = album.id
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%pop%')
+AND album.release_year BETWEEN 1980 AND 1989
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;
 
 
---recent electronic songs like david guetta
+--recent electronic songs like X
 SELECT
 
 album.gid,
@@ -17382,11 +18338,47 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%electronic%')
 AND album.release_year BETWEEN 2020 AND 2025
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'davidguetta' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;
 
---neo prog songs like opeth
+--electronic tracks similar to X
+SELECT
+
+album.gid,
+artist.name AS artist_name,
+album.title AS album_title,
+track.title AS track_title,
+album.release_year AS released,
+to_char((track.duration || ' milliseconds')::interval, 'HH24:MI:SS') AS duration,
+album.cleaned_tags AS tags
+
+FROM track
+
+JOIN album_variations av
+ON track.album_id = av.id AND av.is_canonical
+
+JOIN album
+ON av.album_group = album.id
+
+JOIN artist_credit ac
+ON album.artist_credit = ac.id
+
+JOIN artist
+ON ac.artist_id = artist.id
+
+JOIN similar_artist sa
+ON artist.gid = sa.similar_artist_mbid
+
+WHERE album.cleaned_tags IS NOT NULL
+AND artist.name NOT IN ('Various Artists', '[unknown]')
+AND album.release_type = array['Album']
+AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%electronic%')
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
+ORDER BY RANDOM()
+LIMIT 10;
+
+--neo prog songs like X
 SELECT
 
 album.gid,
@@ -17419,11 +18411,11 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND album.cleaned_tags && array['progressive rock']
 AND album.release_year BETWEEN 2000 AND 2025
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'opeth' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;
 
---neo prog metal songs like opeth
+--neo prog metal songs like X
 SELECT
 
 album.gid,
@@ -17456,11 +18448,11 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND album.cleaned_tags && array['progressive metal']
 AND album.release_year BETWEEN 2000 AND 2025
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'opeth' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;
 
---prog metal songs similar to opeth
+--prog metal songs similar to X
 SELECT
 
 album.gid,
@@ -17492,11 +18484,11 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND album.cleaned_tags && array['progressive metal']
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'opeth' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;
 
---live songs like the rolling stones
+--live songs like X
 SELECT
 
 album.gid,
@@ -17527,11 +18519,11 @@ ON artist.gid = sa.similar_artist_mbid
 WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type && array['Live']
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'therollingstones' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;
 
---live rock songs like the rolling stones
+--live rock songs like X
 SELECT
 
 album.gid,
@@ -17563,11 +18555,11 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type && array['Live']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%rock%')
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'therollingstones' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;
 
---80s live rock songs like the rolling stones
+--80s live rock songs like X
 SELECT
 
 album.gid,
@@ -17600,11 +18592,11 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type && array['Live']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%rock%')
 AND album.release_year BETWEEN 1980 AND 1989
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'therollingstones' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;
 
---80s live songs like grateful dead
+--80s live songs like X
 SELECT
 
 album.gid,
@@ -17636,11 +18628,11 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type && array['Live']
 AND album.release_year BETWEEN 1980 AND 1989
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'gratefuldead' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;
 
---long songs by artists like tool
+--long songs by artists like X
 SELECT
  
 album.gid,
@@ -17672,11 +18664,11 @@ WHERE album.cleaned_tags IS NOT NULL
 AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND track.duration >= 480000
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'tool' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;
  
---jazz songs over 10 minutes by artists similar to miles davis
+--jazz songs over 10 minutes by artists similar to X
 SELECT
  
 album.gid,
@@ -17709,6 +18701,6 @@ AND artist.name NOT IN ('Various Artists', '[unknown]')
 AND album.release_type = array['Album']
 AND EXISTS (SELECT 1 FROM unnest(album.cleaned_tags) t WHERE t LIKE '%jazz%')
 AND track.duration >= 600000
-AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'milesdavis' ORDER BY artist.id ASC LIMIT 1)
+AND sa.artist_mbid = (SELECT gid FROM artist WHERE artist.name_search = 'x' ORDER BY artist.id ASC LIMIT 1)
 ORDER BY RANDOM()
 LIMIT 10;

@@ -58,29 +58,42 @@ STARTER_ICONS = {
 # (category, short label, full prompt sent on click)
 STARTER_POOL = [
     # --- discovery: tracks ---
-    ("tracks", "Prog epics", "Show me some prog rock songs that are over 20 minutes long."),
-    ("tracks", "Indie folk discovery", "Recommend a few indie folk tracks from the 2010s."),
-    ("tracks", "Focus playlist", "Find some long ambient tracks from after 2000."),
-    ("tracks", "Themed titles", "Show me some pop rock songs with either 'sun' or 'moon' in the title."),
-    ("tracks", "World discovery", "Recommend me some brazilian folk songs."),
-    ("tracks", "Chill remixes", "Show me some downtempo remixes."),
+    ("tracks", "Prog epics", "Prog rock songs that are over 20 minutes long."),
+    ("tracks", "Indie folk discovery", "Indie folk tracks from the 2010s."),
+    ("tracks", "Focus playlist", "Long ambient tracks from after 2000."),
+    ("tracks", "Themed titles", "Pop rock songs with either 'sun' or 'moon' in the title."),
+    ("tracks", "World discovery", "Brazilian classical songs."),
+    ("tracks", "Alors on danse", "French house tracks."),
+    ("tracks", "Chill remixes", "Downtempo remixes."),
+    ("tracks", "Heavy Scandinavian", "Doom metal songs from Scandinavia."),
+    ("tracks", "Boomer tunes", "40s swing songs."),
+    ("tracks", "Live jams", "Late 70s long live rock songs."),
+
     # --- discovery: albums ---
- 
-    ("albums", "Deep house mix", "Find me some deep house dj mixes."),
-    ("albums", "Dead & Company", "Recommend me some live psychedelic rock albums from the 70s."),
-    ("albums", "Simon music", "Show me some drone albums that are longer than 2 hours."),
-    ("albums", "Shoegaze, but Korean", "Find me some Korean Shoegaze albums from the 2010s."),
-    ("albums", "A little soul", "Show me some soul albums from the 80s."),
-    ("albums", "Daniel's finest jazz", "Find me some albums by jazz artists named Daniel"),
+    ("albums", "Deep house mixes", "Deep house dj mixes."),
+    ("albums", "Dead & Company", "Live psychedelic rock albums from the 70s."),
+    ("albums", "Simon music", "Experimental albums that are longer than 2 hours."),
+    ("albums", "Shoegaze, but Korean", "Korean Shoegaze albums from the 2010s."),
+    ("albums", "A little soul", "Soul albums from the 80s."),
+    ("albums", "Daniel's finest jazz", "Albums by jazz artists named Daniel."),
+    ("albums", "Indie pop fever", "Indie pop albums from the last few years."),
+    ("albums", "Rap classics", "Classic rap albums."),
+    ("albums", "Beach bossa", "Bossa nova albums."),
+    ("albums", "I love the Smiths!", "Indie rock albums similar to The Smiths."),
+    ("albums", "Miles ahead", "Cool jazz albums like Miles Davis."),
+
     # --- discovery: artists ---
-    ("artists", "Nu jazz musicians", "Show me some nu jazz artists"),
-    ("artists", "90s death metal bands", "List some death metal artists active in the 90s."),
-    ("artists", "Post-punk acts", "List some post-punk artists from the 80s."),
-    ("artists", "Smooth singers", "Recommend some 70s soft rock artists."),
+    ("artists", "Nu jazz musicians", "Nu jazz artists"),
+    ("artists", "90s death metal bands", "Death metal bands active in the 90s."),
+    ("artists", "Post-punk acts", "Post-punk groups from the 80s."),
+    ("artists", "Smooth singers", "70s soft rock artists."),
+    ("artists", "Indie electronic artists like Phantogram.", "70s soft rock artists."),
+
     # --- info / DB questions ---
     ("info", "Quietest hip hop year", "What year between 2000 and 2020 had the fewest hip hop albums?"),
     ("info", "Most prolific artist", "Which artist has released the most albums?"),
     ("info", "Albums per decade", "How many albums were released per decade since the 1960s?"),
+    ("info", "92's longest work", "What was the longest album released in 1992?"),
 ]
  
 DISCOVERY_CATS = {"artists", "albums", "tracks"}
